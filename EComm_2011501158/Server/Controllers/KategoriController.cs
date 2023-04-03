@@ -45,7 +45,7 @@ namespace EComm_2011501158.Server.Controllers
             {
                 return NotFound("Data kategori tidack ditemukan");
             }
-            return Ok(kat)
+            return Ok(kat);
         }
     }
 }

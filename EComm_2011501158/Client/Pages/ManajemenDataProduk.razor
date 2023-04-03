@@ -1,6 +1,36 @@
-﻿@page "manajemen data produk"
+﻿@page "/master_produk"
+@inject IProdukService ProdukService
 <h3>Manajemen Data Produk</h3>
 
-@code {
+<table class="table">
+    <thead>
+        <tr>
+            <th>Gambar</th>
+            <th>Nama Produk</th>
+            <th>Harga</th>
+            <th>Varian</th>
+            <th>Kategori</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var prod in ProdukService.Produks)
+        {
+            <tr>
+                <td><img height="80" width="80" src="@prod.GambarUrl" alt="@prod.Nama" /></td>
+                <td>@prod.Nama</td>
+                <td>@prod.Harga</td>
+                <td>@prod.IdVarian</td>
+                <td>@prod.IdKategori</td>
+            </tr>
+            
+        }
+    </tbody>
+</table>
 
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await ProdukService.GetAllProduk();
+    }
 }

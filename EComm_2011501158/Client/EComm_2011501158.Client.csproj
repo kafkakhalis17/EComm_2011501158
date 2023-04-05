@@ -15,8 +15,4 @@
     <ProjectReference Include="..\Shared\EComm_2011501158.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\VarianService\" />
-  </ItemGroup>
-
 </Project>

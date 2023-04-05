@@ -1,0 +1,30 @@
+﻿@page "/master_varian"
+@inject IVarianService VarianService
+<h3>ManajemenDataVarian</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nama Kategori</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var vr in VarianService.Varians)
+        {
+            <tr>
+                <td>@vr.IdVarian</td>
+                <td> @vr.Nama</td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await VarianService.GetAllVarian();
+    }
+}

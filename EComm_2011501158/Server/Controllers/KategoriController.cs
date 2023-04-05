@@ -37,7 +37,7 @@ namespace EComm_2011501158.Server.Controllers
             return Ok(Kategoris);
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<ActionResult<Kategori>> GetKategoriById(int id)
         {
             var kat = Kategoris.FirstOrDefault(k => k.IdKategori == id);

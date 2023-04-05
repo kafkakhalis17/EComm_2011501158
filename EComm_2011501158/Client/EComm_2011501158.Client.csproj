@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\KategoriService\" />
     <Folder Include="Services\VarianService\" />
   </ItemGroup>
 

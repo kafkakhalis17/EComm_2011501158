@@ -1,6 +1,8 @@
 global using EComm_2011501158.Client.Services.ProdukService;
+global using EComm_2011501158.Client.Services.KategoriService;
 global using EComm_2011501158.Shared;
 using EComm_2011501158.Client;
+
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -10,5 +12,6 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddScoped<IProdukService, ProdukService>();
+builder.Services.AddScoped<IKategoriService, KategoriService>();
 
 await builder.Build().RunAsync();

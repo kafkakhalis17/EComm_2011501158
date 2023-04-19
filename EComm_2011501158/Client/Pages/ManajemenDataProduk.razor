@@ -1,5 +1,6 @@
 ﻿@page "/master_produk"
 @inject IProdukService ProdukService
+@inject NavigationManager NavigationManager
 <h3>Manajemen Data Produk</h3>
 
 <table class="table">
@@ -22,6 +23,9 @@
                 <td>@prod.Harga</td>
                 <td>@prod.IdVarian</td>
                 <td>@prod.IdKategori</td>
+                <td>
+                    <button class="btn btn-primary" @onclick="(()=> ShowProduk(prod.IdProduk))"> Edit </button>
+                </td>
             </tr>
             
         }
@@ -33,4 +37,5 @@
     {
         await ProdukService.GetAllProduk();
     }
+    void ShowProduk(int id) => NavigationManager.NavigateTo($"manajemenproduk/edit/{id}");
 }

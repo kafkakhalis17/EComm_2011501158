@@ -1,4 +1,5 @@
 global using EComm_2011501158.Shared;
+global using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.ResponseCompression;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -17,22 +17,45 @@ else
          <InputText id="Nama" @bind-Value="@prod.Nama" class="form-control"></InputText>
      </div>
     <div class="form-group row">
-        <label for="Nama" class="col-sm-2 col-form-label">deskripsi</label>
-        <InputText id="Nama" @bind-Value="@prod.Deskripsi" class="form-control"></InputText>
+        <label for="Deskripsi" class="col-sm-2 col-form-label">deskripsi</label>
+        <InputText id="Deskripsi" @bind-Value="@prod.Deskripsi" class="form-control"></InputText>
     </div>
     <div class="form-group row">
-        <label for="Nama" class="col-sm-2 col-form-label">Harga original</label>
-        <InputText id="Nama" @bind-Value="@prod.HargaOrginal" class="form-control"></InputText>
+        <label for="HargaOriginal" class="col-sm-2 col-form-label">Harga original</label>
+        <InputNumber id="hargaoriginal" @bind-Value="@prod.HargaOrginal" class="form-control"></InputNumber>
     </div>
     <div class="form-group row">
-        <label for="Nama" class="col-sm-2 col-form-label">harga</label>
-        <InputText id="Nama" @bind-Value="@prod.Harga" class="form-control"></InputText>
+        <label for="harga" class="col-sm-2 col-form-label">harga</label>
+        <InputNumber id="harga" @bind-Value="@prod.Harga" class="form-control"></InputNumber>
     </div>
     <div class="form-group row">
-        <label for="Nama" class="col-sm-2 col-form-label">Gambar</label>
-        <InputText id="Nama" @bind-Value="@prod.GambarUrl" class="form-control"></InputText>
+        <label for="Gambar" class="col-sm-2 col-form-label">Gambar</label>
+        <InputText id="gm" @bind-Value="@prod.GambarUrl" class="form-control"></InputText>
     </div>
- 
+    <div class="form-group row">
+        <label for="IsPublic" class="col-sm-2 col-form-label">Public?</label>
+        <InputRadioGroup id="isPublic" @bind-Value="prod.IsPublic" class="form-check">
+           <InputRadio Value="@true" class="form-check-input">ya</InputRadio>
+           <InputRadio Value="@false" class="form-check-input">Tidak</InputRadio>
+        </InputRadioGroup>
+    </div>
+    <div class="form-group row">
+        <label for="IsDeleted" class="col-sm-2 col-form-label">Is Deleted?</label>
+        <InputRadioGroup id="isPublic" @bind-Value="prod.IsDeleted" class="form-check">
+            <InputRadio Value="@true" class="form-check-input">ya</InputRadio>
+            <InputRadio Value="@false" class="form-check-input">Tidak</InputRadio>
+        </InputRadioGroup>
+    </div>
+     <div class="form-group row">
+         <label class="col-sm-2 col-form-label">Date created: @prod.DateCreated.ToShortDateString</label>
+     </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Date Updated: @prod.DateCreated.ToShortDateString</label>
+    </div>
+    <div class="form-group row">
+        <label class="col=sm-2 col-form-label">Id kategori</label>
+        <InputNumber id="IdKategori" @bind-Value="@prod.IdKategori" class="form-control"></InputNumber>
+    </div>
 </EditForm>
 
 @code {

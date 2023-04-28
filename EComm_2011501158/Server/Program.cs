@@ -1,11 +1,15 @@
 global using EComm_2011501158.Shared;
 global using Microsoft.EntityFrameworkCore;
+global using EComm_2011501158.Server.Data;
 using Microsoft.AspNetCore.ResponseCompression;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddDbContext<DataContext>(option =>
+{
+    option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 

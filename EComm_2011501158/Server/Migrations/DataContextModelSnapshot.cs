@@ -79,10 +79,10 @@ namespace EComm_2011501158.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Harga")
-                        .HasColumnType("decimal(0,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("HargaOrginal")
-                        .HasColumnType("decimal(0,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("IdKategori")
                         .HasColumnType("int");
@@ -107,8 +107,8 @@ namespace EComm_2011501158.Server.Migrations
                         new
                         {
                             IdProduk = 1,
-                            DateCreated = new DateTime(2023, 5, 1, 2, 54, 58, 756, DateTimeKind.Local).AddTicks(1079),
-                            DateUpdated = new DateTime(2023, 5, 1, 2, 54, 58, 756, DateTimeKind.Local).AddTicks(1090),
+                            DateCreated = new DateTime(2023, 5, 1, 4, 37, 2, 205, DateTimeKind.Local).AddTicks(1401),
+                            DateUpdated = new DateTime(2023, 5, 1, 4, 37, 2, 205, DateTimeKind.Local).AddTicks(1412),
                             Deskripsi = "Misteri Tujuh Lonceng adalah sebuah novel yang bercerita tentang pembunuhan seorang pegawai Departemen Luar Negeri Inggris di sebuah pemondokan, yaitu Pemondokan Chimney. Setelah itu terjadi juga pembunuhan terhadap seorang pria yang tidak lain adalah teman orang yang terbunuh di pemondokan Chimney.",
                             GambarUrl = "https://upload.wikimedia.org/wikipedia/id/4/4c/The_Seven_Dials_Mystery_First_Edition_Cover_1929.jpg",
                             Harga = 99.999m,
@@ -121,12 +121,12 @@ namespace EComm_2011501158.Server.Migrations
                         new
                         {
                             IdProduk = 2,
-                            DateCreated = new DateTime(2023, 5, 1, 2, 54, 58, 756, DateTimeKind.Local).AddTicks(1095),
-                            DateUpdated = new DateTime(2023, 5, 1, 2, 54, 58, 756, DateTimeKind.Local).AddTicks(1096),
+                            DateCreated = new DateTime(2023, 5, 1, 4, 37, 2, 205, DateTimeKind.Local).AddTicks(1415),
+                            DateUpdated = new DateTime(2023, 5, 1, 4, 37, 2, 205, DateTimeKind.Local).AddTicks(1416),
                             Deskripsi = "The Witcher adalah rangkaian enam novel fantasi dan 15 cerita pendek  yang ditulis oleh penulis Polandia Andrzej SapkowskiSerial ini berputar di sekitar \"penyihir\" eponymous, Geralt of Rivia ",
                             GambarUrl = "https://upload.wikimedia.org/wikipedia/en/8/84/Season_of_Storms_Orion.jpg",
-                            Harga = 70000m,
-                            HargaOrginal = 120.000m,
+                            Harga = 70.000m,
+                            HargaOrginal = 12.0000m,
                             IdKategori = 2,
                             IsDeleted = false,
                             IsPublic = true,
@@ -135,11 +135,11 @@ namespace EComm_2011501158.Server.Migrations
                         new
                         {
                             IdProduk = 3,
-                            DateCreated = new DateTime(2023, 5, 1, 2, 54, 58, 756, DateTimeKind.Local).AddTicks(1098),
-                            DateUpdated = new DateTime(2023, 5, 1, 2, 54, 58, 756, DateTimeKind.Local).AddTicks(1099),
+                            DateCreated = new DateTime(2023, 5, 1, 4, 37, 2, 205, DateTimeKind.Local).AddTicks(1418),
+                            DateUpdated = new DateTime(2023, 5, 1, 4, 37, 2, 205, DateTimeKind.Local).AddTicks(1418),
                             Deskripsi = "The Lord of the Rings adalah sebuah novel epik   fantasi tinggi [a] oleh penulis dan sarjana Inggris J. R. R. Tolkien. Bertempat di Middle-earth, ceritanya dimulai sebagai sekuel dari buku anak-anak Tolkien tahun 1937 The Hobbit, tetapi akhirnya berkembang menjadi karya yang jauh lebih besar. ",
                             GambarUrl = "https://upload.wikimedia.org/wikipedia/en/thumb/e/e9/First_Single_Volume_Edition_of_The_Lord_of_the_Rings.gif/220px-First_Single_Volume_Edition_of_The_Lord_of_the_Rings.gif",
-                            Harga = 70000m,
+                            Harga = 70.000m,
                             HargaOrginal = 120.000m,
                             IdKategori = 2,
                             IsDeleted = false,

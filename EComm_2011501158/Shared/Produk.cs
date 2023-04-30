@@ -10,9 +10,9 @@ namespace EComm_2011501158.Shared
         public string Nama { get; set; } = string.Empty;
         public string Deskripsi { get; set; } = string.Empty;
         public string GambarUrl { get; set; } = string.Empty;
-        [Column(TypeName ="decimal(0,2)")]
+        [Column(TypeName ="decimal(18,2)")]
         public decimal Harga { get; set; }
-        [Column(TypeName = "decimal(0,2)")]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal HargaOrginal { get; set; }
         public bool IsPublic { get; set; }
         public bool IsDeleted { get; set; }

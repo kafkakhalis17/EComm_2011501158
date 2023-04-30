@@ -45,8 +45,8 @@ namespace EComm_2011501158.Server.Data
                 "Serial ini berputar di sekitar \"penyihir\" eponymous, Geralt of Rivia ",
                  GambarUrl =
                 "https://upload.wikimedia.org/wikipedia/en/8/84/Season_of_Storms_Orion.jpg",
-                 Harga = 70000,
-                 HargaOrginal = 120.000m,
+                 Harga = 70.000m,
+                 HargaOrginal = 12.0000m,
                  DateCreated = DateTime.Now,
                  DateUpdated = DateTime.Now,
                  IsDeleted = false,
@@ -63,7 +63,7 @@ namespace EComm_2011501158.Server.Data
                 "Bertempat di Middle-earth, ceritanya dimulai sebagai sekuel dari buku anak-anak Tolkien tahun 1937 The Hobbit, tetapi akhirnya berkembang menjadi karya yang jauh lebih besar. ",
                  GambarUrl =
                 "https://upload.wikimedia.org/wikipedia/en/thumb/e/e9/First_Single_Volume_Edition_of_The_Lord_of_the_Rings.gif/220px-First_Single_Volume_Edition_of_The_Lord_of_the_Rings.gif",
-                 Harga = 70000,
+                 Harga = 70.000m,
                  HargaOrginal = 120.000m,
                  DateCreated = DateTime.Now,
                  DateUpdated = DateTime.Now,

@@ -37,6 +37,23 @@ namespace EComm_2011501158.Server.Migrations
                     b.HasKey("IdKategori");
 
                     b.ToTable("Kategori");
+
+                    b.HasData(
+                        new
+                        {
+                            IdKategori = 1,
+                            Nama = "Horror"
+                        },
+                        new
+                        {
+                            IdKategori = 2,
+                            Nama = "Drama"
+                        },
+                        new
+                        {
+                            IdKategori = 3,
+                            Nama = "fantasi"
+                        });
                 });
 
             modelBuilder.Entity("EComm_2011501158.Shared.Produk", b =>
@@ -90,8 +107,8 @@ namespace EComm_2011501158.Server.Migrations
                         new
                         {
                             IdProduk = 1,
-                            DateCreated = new DateTime(2023, 4, 30, 22, 0, 1, 895, DateTimeKind.Local).AddTicks(8953),
-                            DateUpdated = new DateTime(2023, 4, 30, 22, 0, 1, 895, DateTimeKind.Local).AddTicks(8962),
+                            DateCreated = new DateTime(2023, 5, 1, 2, 54, 58, 756, DateTimeKind.Local).AddTicks(1079),
+                            DateUpdated = new DateTime(2023, 5, 1, 2, 54, 58, 756, DateTimeKind.Local).AddTicks(1090),
                             Deskripsi = "Misteri Tujuh Lonceng adalah sebuah novel yang bercerita tentang pembunuhan seorang pegawai Departemen Luar Negeri Inggris di sebuah pemondokan, yaitu Pemondokan Chimney. Setelah itu terjadi juga pembunuhan terhadap seorang pria yang tidak lain adalah teman orang yang terbunuh di pemondokan Chimney.",
                             GambarUrl = "https://upload.wikimedia.org/wikipedia/id/4/4c/The_Seven_Dials_Mystery_First_Edition_Cover_1929.jpg",
                             Harga = 99.999m,
@@ -104,8 +121,8 @@ namespace EComm_2011501158.Server.Migrations
                         new
                         {
                             IdProduk = 2,
-                            DateCreated = new DateTime(2023, 4, 30, 22, 0, 1, 895, DateTimeKind.Local).AddTicks(8968),
-                            DateUpdated = new DateTime(2023, 4, 30, 22, 0, 1, 895, DateTimeKind.Local).AddTicks(8970),
+                            DateCreated = new DateTime(2023, 5, 1, 2, 54, 58, 756, DateTimeKind.Local).AddTicks(1095),
+                            DateUpdated = new DateTime(2023, 5, 1, 2, 54, 58, 756, DateTimeKind.Local).AddTicks(1096),
                             Deskripsi = "The Witcher adalah rangkaian enam novel fantasi dan 15 cerita pendek  yang ditulis oleh penulis Polandia Andrzej SapkowskiSerial ini berputar di sekitar \"penyihir\" eponymous, Geralt of Rivia ",
                             GambarUrl = "https://upload.wikimedia.org/wikipedia/en/8/84/Season_of_Storms_Orion.jpg",
                             Harga = 70000m,
@@ -118,8 +135,8 @@ namespace EComm_2011501158.Server.Migrations
                         new
                         {
                             IdProduk = 3,
-                            DateCreated = new DateTime(2023, 4, 30, 22, 0, 1, 895, DateTimeKind.Local).AddTicks(8973),
-                            DateUpdated = new DateTime(2023, 4, 30, 22, 0, 1, 895, DateTimeKind.Local).AddTicks(8975),
+                            DateCreated = new DateTime(2023, 5, 1, 2, 54, 58, 756, DateTimeKind.Local).AddTicks(1098),
+                            DateUpdated = new DateTime(2023, 5, 1, 2, 54, 58, 756, DateTimeKind.Local).AddTicks(1099),
                             Deskripsi = "The Lord of the Rings adalah sebuah novel epik   fantasi tinggi [a] oleh penulis dan sarjana Inggris J. R. R. Tolkien. Bertempat di Middle-earth, ceritanya dimulai sebagai sekuel dari buku anak-anak Tolkien tahun 1937 The Hobbit, tetapi akhirnya berkembang menjadi karya yang jauh lebih besar. ",
                             GambarUrl = "https://upload.wikimedia.org/wikipedia/en/thumb/e/e9/First_Single_Volume_Edition_of_The_Lord_of_the_Rings.gif/220px-First_Single_Volume_Edition_of_The_Lord_of_the_Rings.gif",
                             Harga = 70000m,

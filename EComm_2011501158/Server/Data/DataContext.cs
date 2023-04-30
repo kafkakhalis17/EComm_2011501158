@@ -73,6 +73,12 @@ namespace EComm_2011501158.Server.Data
              }
 
             );
+
+            modelBuilder.Entity<Kategori>().HasData(
+                new Kategori { IdKategori=1, Nama="Horror"},
+                new Kategori { IdKategori=2, Nama="Drama"},
+                new Kategori { IdKategori=3, Nama="fantasi"}
+             );
             base.OnModelCreating(modelBuilder);
         }
 

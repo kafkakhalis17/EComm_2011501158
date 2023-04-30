@@ -68,13 +68,23 @@ namespace EComm_2011501158.Server.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Kategori",
+                columns: new[] { "IdKategori", "Nama" },
+                values: new object[,]
+                {
+                    { 1, "Horror" },
+                    { 2, "Drama" },
+                    { 3, "fantasi" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Produk",
                 columns: new[] { "IdProduk", "DateCreated", "DateUpdated", "Deskripsi", "GambarUrl", "Harga", "HargaOrginal", "IdKategori", "IsDeleted", "IsPublic", "Nama" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 4, 30, 22, 0, 1, 895, DateTimeKind.Local).AddTicks(8953), new DateTime(2023, 4, 30, 22, 0, 1, 895, DateTimeKind.Local).AddTicks(8962), "Misteri Tujuh Lonceng adalah sebuah novel yang bercerita tentang pembunuhan seorang pegawai Departemen Luar Negeri Inggris di sebuah pemondokan, yaitu Pemondokan Chimney. Setelah itu terjadi juga pembunuhan terhadap seorang pria yang tidak lain adalah teman orang yang terbunuh di pemondokan Chimney.", "https://upload.wikimedia.org/wikipedia/id/4/4c/The_Seven_Dials_Mystery_First_Edition_Cover_1929.jpg", 99.999m, 100.000m, 1, false, true, "Misteri Tujuh Lonceng" },
-                    { 2, new DateTime(2023, 4, 30, 22, 0, 1, 895, DateTimeKind.Local).AddTicks(8968), new DateTime(2023, 4, 30, 22, 0, 1, 895, DateTimeKind.Local).AddTicks(8970), "The Witcher adalah rangkaian enam novel fantasi dan 15 cerita pendek  yang ditulis oleh penulis Polandia Andrzej SapkowskiSerial ini berputar di sekitar \"penyihir\" eponymous, Geralt of Rivia ", "https://upload.wikimedia.org/wikipedia/en/8/84/Season_of_Storms_Orion.jpg", 70000m, 120.000m, 2, false, true, "Season of Storms" },
-                    { 3, new DateTime(2023, 4, 30, 22, 0, 1, 895, DateTimeKind.Local).AddTicks(8973), new DateTime(2023, 4, 30, 22, 0, 1, 895, DateTimeKind.Local).AddTicks(8975), "The Lord of the Rings adalah sebuah novel epik   fantasi tinggi [a] oleh penulis dan sarjana Inggris J. R. R. Tolkien. Bertempat di Middle-earth, ceritanya dimulai sebagai sekuel dari buku anak-anak Tolkien tahun 1937 The Hobbit, tetapi akhirnya berkembang menjadi karya yang jauh lebih besar. ", "https://upload.wikimedia.org/wikipedia/en/thumb/e/e9/First_Single_Volume_Edition_of_The_Lord_of_the_Rings.gif/220px-First_Single_Volume_Edition_of_The_Lord_of_the_Rings.gif", 70000m, 120.000m, 2, false, true, "Lord of the rings" }
+                    { 1, new DateTime(2023, 5, 1, 2, 54, 58, 756, DateTimeKind.Local).AddTicks(1079), new DateTime(2023, 5, 1, 2, 54, 58, 756, DateTimeKind.Local).AddTicks(1090), "Misteri Tujuh Lonceng adalah sebuah novel yang bercerita tentang pembunuhan seorang pegawai Departemen Luar Negeri Inggris di sebuah pemondokan, yaitu Pemondokan Chimney. Setelah itu terjadi juga pembunuhan terhadap seorang pria yang tidak lain adalah teman orang yang terbunuh di pemondokan Chimney.", "https://upload.wikimedia.org/wikipedia/id/4/4c/The_Seven_Dials_Mystery_First_Edition_Cover_1929.jpg", 99.999m, 100.000m, 1, false, true, "Misteri Tujuh Lonceng" },
+                    { 2, new DateTime(2023, 5, 1, 2, 54, 58, 756, DateTimeKind.Local).AddTicks(1095), new DateTime(2023, 5, 1, 2, 54, 58, 756, DateTimeKind.Local).AddTicks(1096), "The Witcher adalah rangkaian enam novel fantasi dan 15 cerita pendek  yang ditulis oleh penulis Polandia Andrzej SapkowskiSerial ini berputar di sekitar \"penyihir\" eponymous, Geralt of Rivia ", "https://upload.wikimedia.org/wikipedia/en/8/84/Season_of_Storms_Orion.jpg", 70000m, 120.000m, 2, false, true, "Season of Storms" },
+                    { 3, new DateTime(2023, 5, 1, 2, 54, 58, 756, DateTimeKind.Local).AddTicks(1098), new DateTime(2023, 5, 1, 2, 54, 58, 756, DateTimeKind.Local).AddTicks(1099), "The Lord of the Rings adalah sebuah novel epik   fantasi tinggi [a] oleh penulis dan sarjana Inggris J. R. R. Tolkien. Bertempat di Middle-earth, ceritanya dimulai sebagai sekuel dari buku anak-anak Tolkien tahun 1937 The Hobbit, tetapi akhirnya berkembang menjadi karya yang jauh lebih besar. ", "https://upload.wikimedia.org/wikipedia/en/thumb/e/e9/First_Single_Volume_Edition_of_The_Lord_of_the_Rings.gif/220px-First_Single_Volume_Edition_of_The_Lord_of_the_Rings.gif", 70000m, 120.000m, 2, false, true, "Lord of the rings" }
                 });
 
             migrationBuilder.CreateIndex(

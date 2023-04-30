@@ -9,7 +9,6 @@
             <th>Gambar</th>
             <th>Nama Produk</th>
             <th>Harga</th>
-            <th>Varian</th>
             <th>Kategori</th>
             <th></th>
         </tr>
@@ -21,7 +20,6 @@
                 <td><img height="80" width="80" src="@prod.GambarUrl" alt="@prod.Nama" /></td>
                 <td>@prod.Nama</td>
                 <td>@prod.Harga</td>
-                <td>@prod.IdVarian</td>
                 <td>@prod.IdKategori</td>
                 <td>
                     <button class="btn btn-primary" @onclick="(()=> ShowProduk(prod.IdProduk))"> Edit </button>

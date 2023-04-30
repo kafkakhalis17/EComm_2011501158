@@ -28,8 +28,7 @@ namespace EComm_2011501158.Server.Controllers
                 DateCreated=DateTime.Now,
                 DateUpdated=DateTime.Now,
                 IsDeleted=false,
-                IsPublic=true,
-                IdVarian=1
+                IsPublic=true
             },
              new Produk{
                 IdProduk=2,
@@ -45,8 +44,7 @@ namespace EComm_2011501158.Server.Controllers
                 DateCreated=DateTime.Now,
                 DateUpdated=DateTime.Now,
                 IsDeleted=false,
-                IsPublic=true,
-                IdVarian=1
+                IsPublic=true
             },
              new Produk{
                 IdProduk=3,
@@ -62,8 +60,7 @@ namespace EComm_2011501158.Server.Controllers
                 DateCreated=DateTime.Now,
                 DateUpdated=DateTime.Now,
                 IsDeleted=false,
-                IsPublic=true,
-                IdVarian=2
+                IsPublic=true
             }
             
 

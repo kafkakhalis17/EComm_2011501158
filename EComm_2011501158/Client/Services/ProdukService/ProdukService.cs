@@ -1,13 +1,16 @@
-﻿using System.Net.Http.Json;
+﻿using Microsoft.AspNetCore.Components;
+using System.Net.Http.Json;
 
 namespace EComm_2011501158.Client.Services.ProdukService
 {
     public class ProdukService : IProdukService
     {
         private readonly HttpClient _http;
+        private readonly NavigationManager _navigationmanager;
 
-        public ProdukService(HttpClient http) {
+        public ProdukService(HttpClient http, NavigationManager navigationmanager) {
             _http = http;
+            _navigationmanager = navigationmanager;
         }
         public List<Produk> Produks { get; set; } = new List<Produk>();
 

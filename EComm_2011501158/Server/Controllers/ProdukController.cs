@@ -55,6 +55,23 @@ namespace EComm_2011501158.Server.Controllers
             dbProduk.Harga = produk.Harga;
             dbProduk.HargaOrginal = produk.HargaOrginal;
             dbProduk.DateCreated = produk.DateCreated;
+            dbProduk.DateUpdated = produk.DateUpdated;
+            dbProduk.IsDeleted = produk.IsDeleted;
+            dbProduk.IsPublic = produk.IsPublic;
+            dbProduk.GambarUrl = produk.GambarUrl;
+            dbProduk.IdKategori = produk.IdKategori;
+            await _context.SaveChangesAsync();
+            return Ok(await GetDbProduk());
+        }
+
+        public async Task<ActionResult<List<Produk>>> DeleteProduk(int id)
+        {
+            var dbProduk = await _context.Produk
+                .FirstOrDefaultAsync(sh => sh.IdProduk == id);
+            if (dbProduk == null) return NotFound("data tidak ditemukan");
+            _context.Produk.Remove(dbProduk);
+            await _context.SaveChangesAsync(); 
+            return Ok(await GetDbProduk());
         }
     }
 }

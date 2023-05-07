@@ -8,7 +8,7 @@ namespace EComm_2011501158.Server.Controllers
     [ApiController]
     public class ProdukController : ControllerBase
     {
-        public static List<Produk> produks = new List<Produk>();
+        public static List<Produk> produk = new List<Produk>();
         private readonly DataContext _context;
         public ProdukController(DataContext context)
         {
@@ -19,6 +19,7 @@ namespace EComm_2011501158.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Produk>>> GetAllProduk()
         {
+            var produks = await _context.Produk.ToListAsync();
             return Ok(produks);
         }
 

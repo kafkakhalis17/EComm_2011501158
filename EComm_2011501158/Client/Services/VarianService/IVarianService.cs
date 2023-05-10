@@ -7,5 +7,9 @@
         Task GetAllVarian();
 
         Task<Varian> GetVarianById(int id);
+
+        Task CreateVarian(Varian varian);   
+        Task UpdateVarian(Varian varian);
+        Task DeleteVarian(int id);
     }
 }

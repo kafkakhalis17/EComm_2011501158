@@ -1,0 +1,65 @@
+﻿@page "/manajemenvarian/tambah"
+@page "/manajemenvarian/edit/{id:int}"
+@inject IVarianService VarianService
+
+<h3>CED Varian</h3>
+
+
+@if (Id == null)
+{
+    <h3>Tambah Varian</h3>
+}else
+{
+    <PageTitle> Edit Data @vari.Nama</PageTitle>
+    <h3> Edit Varian @vari.Nama</h3>
+}
+<EditForm Model="vari" OnValidSubmit="HandleSubmit">
+    <div class="form-group row">
+        <label for="Nama" class="col-sm-2 col-form-label">nama</label>
+        <InputText id="Nama" @bind-Value="@vari.Nama" class="form-control"></InputText>
+    </div>
+
+    <div class="form-group row">
+        <button type="submit" class="btn btn-primary form-control">@btnTxt</button>
+        <button type="button" class="btn btn-danger form-control" @onclick="HapusVarian">Hapus</button>
+    </div>
+</EditForm>
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+    string btnTxt = string.Empty;
+    Varian vari = new Varian();
+
+    protected async override Task OnInitializedAsync()
+    {
+        btnTxt = Id == null ? "Tambah Baru" : "Ubah Varian";
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id != null)
+        {
+            vari = await VarianService.GetVarianById((int)Id);
+        }
+
+    }
+
+    // Memproses submit form
+    public async void HandleSubmit()
+    {
+        if (Id == null)
+        {
+            await VarianService.CreateVarian(vari);
+        }
+        else
+        {
+            await VarianService.UpdateVarian(vari);
+        }
+
+    }
+
+    async Task HapusVarian()
+    {
+        await VarianService.DeleteVarian(vari.IdVarian);
+    }
+}

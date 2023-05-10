@@ -1,9 +1,11 @@
 ﻿
 @page "/master_kategori"
 @inject IKategoriService KategoriService;
+@inject NavigationManager NavigationManager
 <h3>Manajemen Data Kategori</h3>
-
-
+<br />
+<button class=" btn btn-primary" @onclick="TambahKategori">Tambah Kategori</button>
+<br />
 <table class="table">
     <thead>
         <tr>
@@ -27,5 +29,9 @@
     protected override async Task OnInitializedAsync()
     {
         await KategoriService.GetAllKategori();
+    }
+    void TambahKategori()
+    {
+        NavigationManager.NavigateTo("/manajemenkategori/tambah");
     }
 }

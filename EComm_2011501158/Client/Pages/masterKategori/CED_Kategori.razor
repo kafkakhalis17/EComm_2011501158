@@ -1,0 +1,67 @@
+﻿@page "/masterkategori/tambah";
+@page "/masterkategoir/edit/{id:int}";
+@inject IKategoriService KategoriService
+
+<h3>CED Kategori</h3>
+
+@if (Id == null)
+{
+    <h3>Tambah Kategori</h3>
+}
+else
+{
+    <PageTitle> Edit Data @kat.Nama</PageTitle>
+    <h3> Edit produk @kat.Nama</h3>
+}
+<EditForm Model="kat" OnValidSubmit="HandleSubmit">
+    <div class="form-group row">
+        <label for="Nama" class="col-sm-2 col-form-label">nama</label>
+        <InputText id="Nama" @bind-Value="@kat.Nama" class="form-control"></InputText>
+    </div>
+
+    <div class="form-group row">
+        <button type="submit" class="btn btn-primary form-control">@btnTxt</button>
+        <button type="button" class="btn btn-danger form-control" @onclick="HapusKategori">Hapus</button>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+    string btnTxt = string.Empty;
+    Kategori kat = new Kategori();
+
+    protected async override Task OnInitializedAsync()
+    {
+        btnTxt = Id == null ? "Tambah Kategori Baru" : "Ubah Kategori";
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id != null)
+        {
+            kat = await KategoriService.GetKategoriById((int)Id);
+        }
+
+    }
+
+    // Memproses submit form
+    public async void HandleSubmit()
+    {
+        if (Id == null)
+        {
+            await KategoriService.CreateKategori(kat);
+        }
+        else
+        {
+            await KategoriService.UpdateKategori(kat);
+        }
+
+    }
+
+    async Task HapusKategori()
+    {
+        await KategoriService.DeleteKategori(kat.IdKategori);
+    }
+}
+

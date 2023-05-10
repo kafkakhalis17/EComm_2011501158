@@ -12,25 +12,32 @@ else
     <h3> Edit produk @prod.Nama</h3>
 }
 <EditForm Model="prod" OnValidSubmit="HandleSubmit">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
      <div class="form-group row">
          <label for="Nama"  class="col-sm-2 col-form-label">nama</label>
          <InputText id="Nama" @bind-Value="@prod.Nama" class="form-control"></InputText>
+         <ValidationMessage For="@(() => prod.Nama)"/>
      </div>
     <div class="form-group row">
         <label for="Deskripsi" class="col-sm-2 col-form-label">deskripsi</label>
         <InputText id="Deskripsi" @bind-Value="@prod.Deskripsi" class="form-control"></InputText>
+        <ValidationMessage For="@(() => prod.Deskripsi)" />
     </div>
     <div class="form-group row">
         <label for="HargaOriginal" class="col-sm-2 col-form-label">Harga original</label>
         <InputNumber id="hargaoriginal" @bind-Value="@prod.HargaOrginal" class="form-control"></InputNumber>
+        <ValidationMessage For="@(() => prod.HargaOrginal)" />
     </div>
     <div class="form-group row">
         <label for="harga" class="col-sm-2 col-form-label">harga</label>
         <InputNumber id="harga" @bind-Value="@prod.Harga" class="form-control"></InputNumber>
+        <ValidationMessage For="@(() => prod.Harga)" />
     </div>
     <div class="form-group row">
         <label for="Gambar" class="col-sm-2 col-form-label">Gambar</label>
         <InputText id="gm" @bind-Value="@prod.GambarUrl" class="form-control"></InputText>
+        <ValidationMessage For="@(() => prod.GambarUrl)" />
     </div>
     <div class="form-group row">
         <label for="IsPublic" class="col-sm-2 col-form-label">Public?</label>
@@ -38,6 +45,7 @@ else
            <InputRadio Value="@true" class="form-check-input">ya</InputRadio>
            <InputRadio Value="@false" class="form-check-input">Tidak</InputRadio>
         </InputRadioGroup>
+        <ValidationMessage For="@(() => prod.IsPublic)" />
     </div>
     <div class="form-group row">
         <label for="IsDeleted" class="col-sm-2 col-form-label">Is Deleted?</label>
@@ -45,6 +53,7 @@ else
             <InputRadio Value="@true" class="form-check-input">ya</InputRadio>
             <InputRadio Value="@false" class="form-check-input">Tidak</InputRadio>
         </InputRadioGroup>
+        <ValidationMessage For="@(() => prod.IsDeleted)" />
     </div>
      <div class="form-group row">
          Date Created :
@@ -57,6 +66,7 @@ else
     <div class="form-group row">
         <label class="col=sm-2 col-form-label">Id kategori</label>
         <InputNumber id="IdKategori" @bind-Value="@prod.IdKategori" class="form-control"></InputNumber>
+        <ValidationMessage For="@(() => prod.IdKategori)" />
     </div>
     
     <div class="form-group row">

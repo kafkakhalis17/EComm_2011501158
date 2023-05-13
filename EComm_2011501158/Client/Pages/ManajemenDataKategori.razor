@@ -20,6 +20,7 @@
             <tr>
                 <td>@kt.IdKategori</td>
                 <td> @kt.Nama</td>
+                <td> <button class="btn btn-primary" @onclick="(()=> ShowKategori(kt.IdKategori))"> Edit </button></td>
             </tr>
 
         }
@@ -30,6 +31,7 @@
     {
         await KategoriService.GetAllKategori();
     }
+    void ShowKategori(int id) => NavigationManager.NavigateTo($"manajemenkategori/edit/{id}");
     void TambahKategori()
     {
         NavigationManager.NavigateTo("/manajemenkategori/tambah");

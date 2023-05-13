@@ -64,7 +64,7 @@ namespace EComm_2011501158.Server.Controllers
             await _context.SaveChangesAsync();
             return Ok(await GetDbProduk());
         }
-
+        [HttpDelete("{id}")]
         public async Task<ActionResult<List<Produk>>> DeleteProduk(int id)
         {
             var dbProduk = await _context.Produk

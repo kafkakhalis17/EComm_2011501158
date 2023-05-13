@@ -21,7 +21,7 @@ namespace EComm_2011501158.Server.Controllers
         public async Task<ActionResult<List<Kategori>>> GetAllKategori()
         {
             var kategoris = await _context.Kategori.ToListAsync();
-            return Ok(Kategoris);
+            return Ok(kategoris);
         }
         // get data by id 
         [HttpGet("{id}")]
@@ -38,6 +38,7 @@ namespace EComm_2011501158.Server.Controllers
         {
             return await _context.Kategori.ToListAsync();
         }
+
         [HttpPost]
         public async Task<ActionResult<List<Kategori>>> CreateKategori(Kategori kategori)
         {
@@ -46,7 +47,7 @@ namespace EComm_2011501158.Server.Controllers
             return Ok(await GetDbKategori());
         }
 
-        [HttpPut("id")]
+        [HttpPut("{id}")]
         public async Task<ActionResult<List<Kategori>>> UpdateKategori(Kategori kategori, int id)
         {
             var dbkat = await _context.Kategori.FirstOrDefaultAsync(sh => sh.IdKategori == id);
@@ -57,6 +58,7 @@ namespace EComm_2011501158.Server.Controllers
             await _context.SaveChangesAsync();
             return Ok(await GetDbKategori());
         }
+        [HttpDelete("{id}")]
         public async Task<ActionResult<List<Kategori>>> DeleteKategori(int id)
         {
             var dbkat = await _context.Kategori

@@ -1,6 +1,7 @@
 global using EComm_2011501158.Client.Services.ProdukService;
 global using EComm_2011501158.Client.Services.KategoriService;
 global using EComm_2011501158.Client.Services.VarianService;
+global using EComm_2011501158.Client.Services.PenggunaService;
 global using EComm_2011501158.Shared;
 using EComm_2011501158.Client;
 
@@ -16,4 +17,5 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddScoped<IProdukService, ProdukService>();
 builder.Services.AddScoped<IKategoriService, KategoriService>();
 builder.Services.AddScoped<IVarianService, VarianService>();
+builder.Services.AddScoped<IPenggunaService, PenggunaService>();
 await builder.Build().RunAsync();

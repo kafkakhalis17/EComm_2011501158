@@ -1,0 +1,48 @@
+﻿@page "/master_pengguna"
+@inject IPenggunaService Penggunaservice
+@inject NavigationManager NavigationManager
+<h3>ManajemenDataPengguna</h3>
+<br />
+<button class=" btn btn-primary" @onclick="TambahPengguna">Tambah Pengguna</button>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>Gambar</th>
+            <th>Nama Pengguna</th>
+            <th>Alamat</th>
+            <th>Email</th>
+            <th>Nomor Telepon</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var users in Penggunaservice.Penggunas)
+        {
+            <tr>
+                <td><img height="80" width="80" src="@users.FotoPengguna" alt="@users.NamaPengguna" /></td>
+                <td>@users.NamaPengguna</td>
+                <td>@users.AlamatPengguna</td>
+                <td>@users.TeleponPengguna</td>
+                <td>
+                    <button class="btn btn-primary" @onclick="(()=> ShowPengguna(users.IdPengguna))"> Edit </button>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await Penggunaservice.GetAllPengguna();
+    }
+    void ShowPengguna(int id) => NavigationManager.NavigateTo($"manajemenpengguna/edit/{id}");
+
+    void TambahPengguna()
+    {
+        NavigationManager.NavigateTo("/manajemenpengguna/tambah");
+    }
+
+}

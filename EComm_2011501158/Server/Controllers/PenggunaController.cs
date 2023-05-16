@@ -1,6 +1,7 @@
 ﻿using EComm_2011501158.Shared;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Org.BouncyCastle.Utilities.IO.Pem;
 
 namespace EComm_2011501158.Server.Controllers
 {
@@ -29,6 +30,47 @@ namespace EComm_2011501158.Server.Controllers
                 return NotFound("Data Pengguna tak ditemukan");
             }
             return Ok(user);
+        }
+        private async Task<List<Pengguna>> GetDbPengguna()
+        {
+            return await _context.Pengguna.ToListAsync();
+        }
+        [HttpPost]
+        public async Task<ActionResult<List<Pengguna>>> CreatePengguna(Pengguna pengguna)
+        {
+            _context.Pengguna.Add(pengguna);
+            await _context.SaveChangesAsync();
+            return Ok(await GetDbPengguna());
+        }
+        [HttpPut("{id}")]
+        public async Task<ActionResult<List<Pengguna>>> UpdatePengguna(Pengguna pengguna, int id)
+        {
+            var dbPengguna = await _context.Pengguna.FirstOrDefaultAsync(sh => sh.IdPengguna == id);
+            if (dbPengguna == null)
+                return NotFound("Data tidak ditemukan");
+            dbPengguna.IdPengguna = id;
+            dbPengguna.NamaPengguna = pengguna.NamaPengguna;
+            dbPengguna.Username = pengguna.Username;
+            dbPengguna.Password = pengguna.Password;
+            dbPengguna.KonfirmPassword = pengguna.KonfirmPassword;
+            dbPengguna.AlamatPengguna = pengguna.AlamatPengguna;
+            dbPengguna.TeleponPengguna = pengguna.TeleponPengguna;
+            dbPengguna.FotoPengguna = pengguna.FotoPengguna;
+            dbPengguna.TglLahir = pengguna.TglLahir;
+            dbPengguna.Admin = pengguna.Admin;
+    
+            await _context.SaveChangesAsync();
+            return Ok(await GetDbPengguna());
+        }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<List<Pengguna>>> DeletePengguna(int id)
+        {
+            var dbPengguna = await _context.Pengguna
+                .FirstOrDefaultAsync(sh => sh.IdPengguna == id);
+            if (dbPengguna == null) return NotFound("data tidak ditemukan");
+            _context.Pengguna.Remove(dbPengguna);
+            await _context.SaveChangesAsync();
+            return Ok(await GetDbPengguna());
         }
     }
 }

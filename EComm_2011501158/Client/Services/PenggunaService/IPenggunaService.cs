@@ -4,6 +4,9 @@
     {
         List<Pengguna> Penggunas { get; set; }
         Task GetAllPengguna();
-        Task<Produk> GetPenggunaById(int id);
+        Task<Pengguna> GetPenggunaById(int id);
+        Task CreatePengguna(Pengguna pengguna);
+        Task UpdatePengguna(Pengguna pengguna);
+        Task DeletePengguna(int id);
     }
 }

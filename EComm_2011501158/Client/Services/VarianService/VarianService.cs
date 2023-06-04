@@ -53,7 +53,7 @@ namespace EComm_2011501158.Client.Services.VarianService
 
         public async Task UpdateVarian(Varian varian)
         {
-            var result = await _http.PutAsJsonAsync($"api/produk/{varian.IdVarian}", varian);
+            var result = await _http.PutAsJsonAsync($"api/varian/{varian.IdVarian}", varian);
             var response = await result.Content.ReadFromJsonAsync<List<Varian>>();
             Varians = response;
             _navigationmanager.NavigateTo("/master_varian");

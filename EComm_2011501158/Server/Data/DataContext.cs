@@ -11,7 +11,8 @@ namespace EComm_2011501158.Server.Data
         public DbSet<Produk> Produk { get; set; }   
         public DbSet<Varian> Varian { get; set; }
         public DbSet<Kategori> Kategori { get; set; }
-
+        public DbSet <Pengguna> Pengguna { get; set; }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Produk>().HasData(
@@ -78,6 +79,11 @@ namespace EComm_2011501158.Server.Data
                 new Kategori { IdKategori=1, Nama="Horror"},
                 new Kategori { IdKategori=2, Nama="Drama"},
                 new Kategori { IdKategori=3, Nama="fantasi"}
+             );
+
+             modelBuilder.Entity<Pengguna>().HasData(
+                new Pengguna { IdPengguna=1, Username="kafka17", NamaPengguna ="kafka khalis", Password="admin123", EmailPengguna="Khaliskafka@mail.com", TeleponPengguna="08193818311", AlamatPengguna="Jl. Budiyanto No.2 Jakarta", FotoPengguna= "https://i.pinimg.com/564x/b6/24/7a/b6247a4b03bc5a296ac7f694b6b72863.jpg", TglLahir = new DateTime(2015, 5, 29), Admin=true  }
+            
              );
             base.OnModelCreating(modelBuilder);
         }

@@ -47,8 +47,8 @@ namespace EComm_2011501158.Server.Controllers
             return Ok(await GetDbVarian());
         }
 
-        [HttpPut("id")]
-        public async Task<ActionResult<List<Varian>>> UpdateKategori(Varian varian, int id)
+        [HttpPut("{id}")]
+        public async Task<ActionResult<List<Varian>>>UpdateVarian(Varian varian, int id)
         {
             var dbVar = await _context.Varian.FirstOrDefaultAsync(sh => sh.IdVarian == id);
             if (dbVar == null)
@@ -58,6 +58,7 @@ namespace EComm_2011501158.Server.Controllers
             await _context.SaveChangesAsync();
             return Ok(await GetDbVarian());
         }
+        [HttpDelete("{id}")]
         public async Task<ActionResult<List<Varian>>> DeleteVarian (int id)
         {
             var dbVar = await _context.Varian

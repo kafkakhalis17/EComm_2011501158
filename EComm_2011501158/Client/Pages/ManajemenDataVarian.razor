@@ -19,6 +19,7 @@
             <tr>
                 <td>@vr.IdVarian</td>
                 <td> @vr.Nama</td>
+                <td> <button class="btn btn-primary" @onclick="(()=> ShowVarian(vr.IdVarian))"> Edit </button></td>
             </tr>
 
         }
@@ -30,6 +31,7 @@
     {
         await VarianService.GetAllVarian();
     }
+    void ShowVarian(int id) => NavigationManager.NavigateTo($"manajemenvarian/edit/{id}");
     void TambahVarian()
     {
         NavigationManager.NavigateTo("/manajemenvarian/tambah");

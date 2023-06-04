@@ -14,7 +14,7 @@ namespace EComm_2011501158.Shared
         [Key]
         public int IdKategori {  get; set; }
         public string Nama { get; set; }
-        public List<Produk> Produk { get; set; }
+      
 
     }
 }

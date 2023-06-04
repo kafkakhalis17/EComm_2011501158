@@ -64,7 +64,7 @@ namespace EComm_2011501158.Server.Controllers
             await _context.SaveChangesAsync();
             return Ok(await GetDbProduk());
         }
-
+        [HttpDelete("{id}")]
         public async Task<ActionResult<List<Produk>>> DeleteProduk(int id)
         {
             var dbProduk = await _context.Produk
@@ -74,5 +74,15 @@ namespace EComm_2011501158.Server.Controllers
             await _context.SaveChangesAsync(); 
             return Ok(await GetDbProduk());
         }
+        [HttpGet("cari/{kataCari}")]
+        public async Task<ActionResult<List<Produk>>> SearchProduk(string kataCari)
+        {
+            var produks = await _context.Produk.Where(p => p.Nama.Contains(kataCari) || p.Deskripsi.Contains(kataCari)).ToListAsync();
+            if (produks == null)
+            {
+                return NotFound("data tidak ditemukan");
+            }
+            return Ok(produks);
+        }   
     }
 }

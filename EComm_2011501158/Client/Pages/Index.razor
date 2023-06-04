@@ -1,9 +1,33 @@
 ﻿@page "/"
+@page "/{urlkategori}"
+@inject IKategoriService KategoriService
 
 <PageTitle>Index</PageTitle>
+@if (kat != null )
+{
+    <h1>List Produk Kategori @kat.Nama</h1>
+    <ListProduk IdKat="@kat.IdKategori"/>
+}
+else
+{
+    <h1>Selamat Datang di toko Online</h1>
+    <ListProduk />
 
-<h1>Hello, world!</h1>
+}
 
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+@code{
+    [Parameter]
+    public string? urlkategori { get; set; }
+    private Kategori kat = null;
+    protected override void OnParametersSet()
+    {
+        if (urlkategori != null)
+        {
+            kat = KategoriService.Kategoris.FirstOrDefault(c => c.Nama == urlkategori);
+        }
+        else
+        {
+            kat = null;
+        }
+    }
+}

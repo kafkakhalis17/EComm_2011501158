@@ -1,0 +1,33 @@
+﻿@inject IProdukService ProdukService
+<h3>ListProduk</h3>
+<ul class="list-unstyled">
+    @foreach (var produk in IdKat == null ? ProdukService.Produks : ProdukService.Produks.Where(p => p.IdKategori == IdKat))
+    {
+        <li class="media my-3">
+            <div class="media-img-wrapper mr-2">
+                <a href="/detail-produk/@produk.IdProduk">
+                    <img class="media-img" src="@produk.GambarUrl" alt="@produk.Nama">    
+                </a>
+            </div>
+            <div class="media-body">
+                <a href="/detail-produk/@produk.IdProduk">
+                <h4 class="mb-0">@produk.Nama</h4>    
+                </a>
+                <p>@produk.Deskripsi</p>
+                @if(produk.HargaOrginal > produk.Harga)
+                {
+                    <h6 class="text-muted original-price">Rp. @produk.HargaOrginal</h6>
+                }
+                <h6 class="price">Rp.@produk.Harga </h6>
+            </div>
+        </li>
+    }
+</ul>
+@code {
+    [Parameter]
+    public int? IdKat { get; set; } = null;
+    protected async override Task OnInitializedAsync()
+    {
+        await ProdukService.GetAllProduk();
+    }
+}

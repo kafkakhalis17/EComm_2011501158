@@ -1,0 +1,32 @@
+﻿
+@page "/detail-produk/{id:int}"
+@inject IProdukService ProdukService
+<h3>DetailProduk</h3>
+<div class="media">
+    <div class="media-img-big-wrapper mr-2">
+        <img class="media-img-big" src="@produk.GambarUrl" />
+    </div>
+    <div class="media-body">
+        <h2 class="mb-0">@produk.Nama</h2>
+        <p>@produk.Deskripsi</p>
+        @if (produk.HargaOrginal > produk.Harga)
+        {
+            <h6 class="text-muted original-price">Rp. @produk.HargaOrginal</h6>
+        }
+        <h4 class="price">Rp.@produk.Harga </h4>
+        <buttion class="btn btn-primary">Tambah keranjanag  </buttion>
+    </div>
+</div>
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+    Produk produk = new Produk();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if(Id != null)
+        {
+            produk = await ProdukService.GetProduksById((int)Id);
+        }
+    }
+}

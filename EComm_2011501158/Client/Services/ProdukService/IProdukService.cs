@@ -8,5 +8,6 @@
         Task CreateProduk(Produk produk);
         Task UpdateProduk(Produk produk);
         Task DeleteProduk(int id);
+        Task<List<Produk>> SearchProduk(String kataCari);
     }
 }

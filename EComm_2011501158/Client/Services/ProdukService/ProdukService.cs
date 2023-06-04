@@ -38,7 +38,7 @@ namespace EComm_2011501158.Client.Services.ProdukService
             {
                 Produks = result;
             }
-            throw new NotImplementedException();
+           
         }
 
         public async Task<Produk> GetProduksById(int id)
@@ -54,6 +54,17 @@ namespace EComm_2011501158.Client.Services.ProdukService
             var response = await result.Content.ReadFromJsonAsync<List<Produk>>();
             Produks = response;
             _navigationmanager.NavigateTo("/master_produk");
+        }
+       
+
+        public async Task<List<Produk>> SearchProduk(string kataCari)
+        {
+            var result = await _http.GetFromJsonAsync<List<Produk>>($"api/produk/cari/{kataCari}"); 
+            if (result != null)
+            {
+                return result;
+            }
+            throw new Exception("Data produk tidak ditemukan");
         }
     }
 }

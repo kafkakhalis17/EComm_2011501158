@@ -1,0 +1,23 @@
+﻿@inject IProdukService ProdukService
+@inject NavigationManager nm
+<h3>PencarianProduk</h3>
+<BlazoredTypeahead SearchMethod="@CariProduk" TValue="Produk"  TItem="Produk" Value="produkTerpilih" ValueChanged="HandleCari" ValueExpression="@(() => produkTerpilih)" placeholder="Masukan kata pencarian">
+    <SelectedTemplate>@context.Nama</SelectedTemplate>
+    <ResultTemplate> @context.Nama</ResultTemplate>
+    <NotFoundTemplate>
+        Maaf data tidak ditemukan
+    </NotFoundTemplate>
+</BlazoredTypeahead>
+@code {
+    private Produk? produkTerpilih;
+    private async  Task<IEnumerable<Produk>> CariProduk(string KataKunci)
+    {
+        return await ProdukService.SearchProduk(KataKunci);
+    }
+    private void HandleCari(Produk prod)
+    {
+        if (prod == null) return;
+        produkTerpilih = prod;
+        nm.NavigateTo($"    detail-produk/{produkTerpilih.IdProduk}");
+    }
+}

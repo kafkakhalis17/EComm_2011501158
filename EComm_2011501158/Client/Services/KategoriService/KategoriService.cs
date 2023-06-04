@@ -40,7 +40,7 @@ namespace EComm_2011501158.Client.Services.KategoriService
             {
                 Kategoris = result;
             }
-            throw new NotImplementedException();
+          
         }
 
         public async Task<Kategori> GetKategoriById(int id)

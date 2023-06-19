@@ -32,6 +32,6 @@ namespace EComm_2011501158.Shared
         public Kategori? Kategori { get; set; }
         [Required(ErrorMessage = "Kategori Harus Diisi")]
         public int IdKategori { get; set; }
-       
+        public List<ProdukVarian> ProdukVarians { get; set; } = new List<ProdukVarian>();
     }
 }

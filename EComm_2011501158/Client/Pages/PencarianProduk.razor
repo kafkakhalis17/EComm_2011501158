@@ -1,6 +1,6 @@
 ﻿@inject IProdukService ProdukService
 @inject NavigationManager nm
-<h3>PencarianProduk</h3>
+
 <BlazoredTypeahead SearchMethod="@CariProduk" TValue="Produk"  TItem="Produk" Value="produkTerpilih" ValueChanged="HandleCari" ValueExpression="@(() => produkTerpilih)" placeholder="Masukan kata pencarian">
     <SelectedTemplate>@context.Nama</SelectedTemplate>
     <ResultTemplate> @context.Nama</ResultTemplate>

@@ -19,14 +19,17 @@ namespace EComm_2011501158.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Produk>>> GetAllProduk()
         {
-            var produks = await _context.Produk.ToListAsync();
-            return Ok(produks);
+           
+                var produks = await _context.Produk
+                .Include(p => p.ProdukVarians).ToListAsync();
+                return Ok(produks);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Produk>> GetProduksById(int id)
         {
-            var prod = await _context.Produk.FirstOrDefaultAsync(p => p.IdProduk == id);
+            var prod = await _context.Produk.Include(p => p.ProdukVarians).ThenInclude(v => v.Varian)
+                .FirstOrDefaultAsync(p => p.IdProduk == id);
             if (prod == null)
             {
                 return NotFound("Data produk tak ditemukan");

@@ -1,0 +1,26 @@
+﻿@inject ISyncLocalStorageService LocalStorage
+@inject IKeretaService KeretaService
+@implements IDisposable
+
+<EComm_2011501158.Client.Pages.PencarianProduk></EComm_2011501158.Client.Pages.PencarianProduk>
+<a href="keranjang" class="btn btn-info">
+    <i class="oi oi-cart"></i>
+    <span class="badge badgecard-header-pills badge-light">
+        @GetJumlahProduk()
+    </span>
+</a>
+@code {
+    protected override void OnInitialized()
+    {
+        KeretaService.OnChange += StateHasChanged;
+    }
+    public void Dispose()
+    {
+        KeretaService.OnChange -= StateHasChanged;
+    }
+    private int GetJumlahProduk()
+    {
+        var kereta = LocalStorage.GetItem<List<ProdukVarian>>("kereta");
+        return kereta != null ? kereta.Count : 0;
+    }
+}

@@ -1,6 +1,9 @@
 ﻿
 @page "/detail-produk/{id:int}"
 @inject IProdukService ProdukService
+@inject IKeretaService KeretaService
+@inject ILocalStorageService LocalStorage
+@inject IToastService ToastService
 <h3>DetailProduk</h3>
 <div class="media">
     <div class="media-img-big-wrapper mr-2">
@@ -9,24 +12,58 @@
     <div class="media-body">
         <h2 class="mb-0">@produk.Nama</h2>
         <p>@produk.Deskripsi</p>
-        @if (produk.HargaOrginal > produk.Harga)
+        <p>
+        @if(produk.ProdukVarians != null && produk.ProdukVarians.Count > 1)
         {
-            <h6 class="text-muted original-price">Rp. @produk.HargaOrginal</h6>
+            <div class="form-group">
+                <select class="form-control" @bind="IdVarianSekarang">
+                    @foreach (var varians in produk.ProdukVarians)
+                    {
+                        <option value="@varians.IdVarian">@varians.Varian.Nama</option>
+                    }
+                </select>
+
+            </div>
+        }
+        </p>
+        @if (VarianTerpilih != null)
+        {
+            @if(VarianTerpilih().HargaOriVarian > VarianTerpilih().HargaVarian)
+            {
+                <h6 class="text-muted orginal-price">@VarianTerpilih().HargaOriVarian</h6>
+            }
+            <h4 class="text-muted orginal-price">@VarianTerpilih().HargaVarian</h4>
         }
         <h4 class="price">Rp.@produk.Harga </h4>
-        <buttion class="btn btn-primary">Tambah keranjanag  </buttion>
+        <buttion class="btn btn-primary" @onclick="TambahKeranjang">Tambah keranjanag  </buttion>
     </div>
 </div>
 @code {
     [Parameter]
     public int? Id { get; set; }
     Produk produk = new Produk();
-
+    private int IdVarianSekarang = 1002;
+    private ProdukVarian VarianTerpilih()
+    {
+        var varians = produk.ProdukVarians.FirstOrDefault(v => v.IdVarian == IdVarianSekarang);
+        return varians;
+    }
     protected override async Task OnParametersSetAsync()
     {
         if(Id != null)
         {
             produk = await ProdukService.GetProduksById((int)Id);
         }
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        if (produk.ProdukVarians.Count < 0)
+        {
+            IdVarianSekarang = produk.ProdukVarians[0].IdVarian;
+        }
+    }
+    private async Task TambahKeranjang()
+    {
+        await KeretaService.TambahKereta(VarianTerpilih());
     }
 }

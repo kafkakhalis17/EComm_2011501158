@@ -14,10 +14,7 @@
                 <h4 class="mb-0">@produk.Nama</h4>    
                 </a>
                 <p>@produk.Deskripsi</p>
-                @if(produk.HargaOrginal > produk.Harga)
-                {
-                    <h6 class="text-muted original-price">Rp. @produk.HargaOrginal</h6>
-                }
+                <h5 class="price"> @GetHargaTerkacil(produk)</h5>
                 <h6 class="price">Rp.@produk.Harga </h6>
             </div>
         </li>
@@ -29,5 +26,20 @@
     protected async override Task OnInitializedAsync()
     {
         await ProdukService.GetAllProduk();
+    }
+    private string GetHargaTerkacil(Produk produk)
+    {
+        var varians = produk.ProdukVarians;
+        if(varians.Count == 0)
+        {
+            return string.Empty;
+        }
+        else if(varians.Count == 1)
+        {
+            return $"Rp.{varians[0].HargaVarian}";
+        }
+        decimal HargaMin = varians.Min(v => v.HargaVarian);
+        return $"Harga mulai dari Rp. {HargaMin}";
+
     }
 }

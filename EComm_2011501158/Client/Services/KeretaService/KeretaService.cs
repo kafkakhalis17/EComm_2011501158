@@ -22,7 +22,7 @@ namespace EComm_2011501158.Client.Services.KeretaService
             }
         public async Task HapusItem(ItemKereta item)
         {
-            var kereta = await _localStorage.GetItemAsync<List<ProdukVarian>>("kereta");
+            var kereta = await _localStorage.GetItemAsync<List<ItemKereta>>("kereta");
             if (kereta == null) { return; }
             var ItemKereta = kereta
             .Find(x => x.IdProduk == item.IdProduk && x.IdVarian == item.IdVarian);
@@ -31,16 +31,25 @@ namespace EComm_2011501158.Client.Services.KeretaService
             OnChange.Invoke();
         }
 
-        public async Task TambahKereta(ProdukVarian produkVarian)
+        public async Task TambahKereta(ItemKereta item)
         {
-            var kereta = await _localStorage.GetItemAsync<List<ProdukVarian>>("kereta");
+            var kereta = await _localStorage.GetItemAsync<List<ItemKereta>>("kereta");
             if (kereta == null)
             {
-                kereta = new List<ProdukVarian>();
+                kereta = new List<ItemKereta>();
+            }var ItemSama = kereta
+                .Find(x => x.IdProduk == item.IdProduk && x.IdVarian == item.IdVarian);
+            if(ItemSama == null)
+            {
+                kereta.Add(item);
             }
-            kereta.Add(produkVarian);
+            else
+            {
+                ItemSama.Qty += item.Qty;
+            }
+           
             await _localStorage.SetItemAsync("kereta", kereta);
-            var produk = await _produkService.GetProduksById(produkVarian.IdProduk);
+            var produk = await _produkService.GetProduksById(item.IdProduk);
             _toastService.ShowToast(ToastLevel.Success, "Tambah" + produk.Nama);
             OnChange.Invoke();
         }
@@ -72,6 +81,13 @@ namespace EComm_2011501158.Client.Services.KeretaService
                 result.Add(KeretaItem);
             }
             return result;
+        }
+
+    
+        public async Task KosongKereta()
+        {
+            await _localStorage.RemoveItemAsync("kereta");
+            OnChange.Invoke();
         }
     }
 }

@@ -13,7 +13,8 @@ namespace EComm_2011501158.Server.Data
         public DbSet<Kategori> Kategori { get; set; }
         public DbSet <Pengguna> Pengguna { get; set; }
         public DbSet <ProdukVarian> ProdukVarian { get; set; }
-        
+        public DbSet <ItemKereta> PesananProduk { get; set; }
+        public DbSet <Pesanan>  Pesanan { get; set; }   
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Produk>().HasData(
@@ -88,6 +89,8 @@ namespace EComm_2011501158.Server.Data
              );
             modelBuilder.Entity<ProdukVarian>().HasKey(p => new { p.IdProduk, p.IdVarian });
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ItemKereta>().HasKey(p => new { p.IdPesanan, p.IdProduk, p.IdVarian });
         }
 
     }

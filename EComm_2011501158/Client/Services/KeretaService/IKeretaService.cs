@@ -7,5 +7,6 @@
         Task<List<ItemKereta>> GetItemKereta();
 
         Task HapusItem(ItemKereta item);
+        Task KosongKereta();
     }
 }

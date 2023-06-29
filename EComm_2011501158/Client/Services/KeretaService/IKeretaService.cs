@@ -3,7 +3,7 @@
     public interface IKeretaService
     {
         event Action OnChange;
-        Task TambahKereta(ProdukVarian produkVarian);
+        Task TambahKereta(ItemKereta item);
         Task<List<ItemKereta>> GetItemKereta();
 
         Task HapusItem(ItemKereta item);

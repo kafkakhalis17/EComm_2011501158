@@ -2,6 +2,7 @@
 using static System.Net.Mime.MediaTypeNames;
 using System.Collections.Generic;
 using EComm_2011501158.Client.Services.ProdukService;
+using System.Data;
 
 namespace EComm_2011501158.Client.Services.KeretaService
 {
@@ -56,31 +57,12 @@ namespace EComm_2011501158.Client.Services.KeretaService
 
         public async Task<List<ItemKereta>> GetItemKereta()
         {
-             var result = new List<ItemKereta>();
-             var kereta = await _localStorage.GetItemAsync<List<ProdukVarian>>("kereta");
-            if (kereta == null)
+            var kereta = await _localStorage.GetItemAsync<List<ItemKereta>>("kereta");
+            if(kereta == null)
             {
-                return result;
+                return new List<ItemKereta>();
             }
-            foreach (var item in kereta) {
-                var produk = await _produkService.GetProduksById(item.IdProduk);
-                var KeretaItem = new ItemKereta
-                {
-                    IdProduk = produk.IdProduk,
-                    NamaProduk = produk.Nama,
-                    Image = produk.GambarUrl,
-                    IdVarian = item.IdVarian
-                };
-                var varians = produk.ProdukVarians
-                    .Find(v => v.IdVarian == item.IdVarian);
-                if (varians != null)
-                {
-                    KeretaItem.NamaVarian = varians.Varian?.Nama;
-                    KeretaItem.Harga = varians.HargaVarian;
-                }
-                result.Add(KeretaItem);
-            }
-            return result;
+            return kereta;
         }
 
     

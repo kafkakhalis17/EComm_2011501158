@@ -1,39 +1,88 @@
 ﻿@page "/keranjang"
 @inject IKeretaService KeretaService
+@inject IPesananService PesananService 
+@inject IPesananProdukService pesananProdukService
+@inject NavigationManager NavigationManager
 
-<h3>Kereta</h3>
-@if(itemKereta == null || itemKereta.Count <= 0)
+@if (!checkout)
 {
-    <span>Tidak Ada Item di keranjang</span>
+    <h3>Kereta</h3>
+
+    @if (itemKereta == null || itemKereta.Count <= 0)
+    {
+        <span>Tidak Ada Item di keranjang</span>
+    }
+    else
+    {
+        <div>
+            @foreach (var item in itemKereta)
+            {
+                <div class="item-container">
+                    <div class="item-image-wrapper">
+                        <img src="@item.Image" class="item-image" />
+                    </div>
+                    <div class="item-name">
+                        <h5><a href="/produk/@item.IdProduk">@item.NamaProduk</a></h5>
+                        <span>@item.NamaVarian</span>
+                        <br>
+                        <button class="btn-danger" @onclick="@(()=>DeleteItem(item))">Hapus</button>
+                        <EditForm Model="item">
+                            <InputNumber id="qty" @bind-Value="item.Qty" class="form-control" style="width:70px"></InputNumber>
+                        </EditForm>
+                        <div class="item-price">
+                            Rp. (@item.Harga * @item.Qty)
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="item-price">
+                Total (@itemKereta.Count): Rp. @itemKereta.Sum(item => item.Harga * item.Qty)
+            </div>
+            <div style="text-alight: center; margin-top:10px;">
+                <button class=" btn btn-primary btn-lg" @onclick="ChekOut">Checkout</button>
+            </div>
+        </div>
+    }
 }
 else
 {
-    <div>
-        @foreach (var item in itemKereta)
-        {
-            <div class="item-container">
-                <div class="item-image-wrapper">
-                    <img src="@item.Image" class="item-image"/>
-                </div>
-                <div class="item-name">
-                    <h5><a href="/produk/@item.IdProduk">@item.NamaProduk</a></h5>
-                    <span>@item.NamaVarian</span>
-                    <br>
-                    <button class="btn-danger" @onclick="@(()=>DeleteItem(item))">Hapus</button>
-                    <div class="item-price">
-                        Rp. @item.Harga
+    <h3>Terima Kasih atas pesanan anda</h3>
+    <h4>Isi Keranjang Belanja anda</h4>
+
+   
+        <div>
+            @foreach (var item in itemKereta)
+            {
+                <div class="item-container">
+                    <div class="item-image-wrapper">
+                        <img src="@item.Image" class="item-image" />
+                    </div>
+                    <div class="item-name">
+                        <h5><a href="/produk/@item.IdProduk">@item.NamaProduk</a></h5>
+                        <span>@item.NamaVarian</span>
+                        <br>
+                      
+                        <div class="item-price">
+                            Rp. (@item.Harga * @item.Qty)
+                                
+                        </div>
                     </div>
                 </div>
+            }
+            <div class="item-price">
+                Total (@itemKereta.Count): Rp. @itemKereta.Sum(item => item.Harga * item.Qty)
             </div>
-        }
-        <div class="item-price">
-            Total (@itemKereta.Count): Rp. @itemKereta.Sum(item => item.Harga)
         </div>
-    </div>
+    
 }
+
 
 @code {
     List<ItemKereta> itemKereta = new List<ItemKereta>();
+    bool checkout = false;
+    Pesanan pesan = new Pesanan();
+    ItemKereta pesananproduk = new ItemKereta();
+
     protected override async Task OnInitializedAsync()
     {
         itemKereta = await KeretaService.GetItemKereta();
@@ -42,5 +91,13 @@ else
     {
         await KeretaService.HapusItem(item);
         itemKereta = await KeretaService.GetItemKereta();
+    }
+    private async Task ChekOut()
+    {
+        checkout = true;
+        await PesananService.CreatePesanan(pesan);
+        await pesananProdukService.CreatePesananProduk(pesananproduk);
+        await KeretaService.KosongKereta();
+
     }
 }

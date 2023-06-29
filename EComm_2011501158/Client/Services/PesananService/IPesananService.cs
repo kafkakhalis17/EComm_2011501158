@@ -4,7 +4,7 @@
     {
         List<Pesanan>Pesanans { get; set; }
         Task CreatePesanan(Pesanan pesanan);
-        Task<int> GetIdTerakhir(    );
+        Task<int> GetIdTerakhir( );
         Task<List<Pesanan>> GetAllPesanan();
 
     }

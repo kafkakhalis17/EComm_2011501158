@@ -35,7 +35,7 @@ namespace EComm_2011501158.Client.Services.PesananService
         }
    
 
-        public async Task<int> GetIdTerakhir(Pesanan pesanan)
+        public async Task<int> GetIdTerakhir()
         {
             var result = await _http.GetAsync("api/pesanan/IdTerakhir");
             var response = await result.Content.ReadFromJsonAsync<int>();

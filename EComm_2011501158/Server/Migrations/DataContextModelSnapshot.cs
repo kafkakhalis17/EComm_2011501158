@@ -229,8 +229,8 @@ namespace EComm_2011501158.Server.Migrations
                         new
                         {
                             IdProduk = 1,
-                            DateCreated = new DateTime(2023, 6, 20, 22, 15, 43, 439, DateTimeKind.Local).AddTicks(550),
-                            DateUpdated = new DateTime(2023, 6, 20, 22, 15, 43, 439, DateTimeKind.Local).AddTicks(550),
+                            DateCreated = new DateTime(2023, 6, 30, 17, 57, 17, 48, DateTimeKind.Local).AddTicks(1969),
+                            DateUpdated = new DateTime(2023, 6, 30, 17, 57, 17, 48, DateTimeKind.Local).AddTicks(1970),
                             Deskripsi = "Misteri Tujuh Lonceng adalah sebuah novel yang bercerita tentang pembunuhan seorang pegawai Departemen Luar Negeri Inggris di sebuah pemondokan, yaitu Pemondokan Chimney. Setelah itu terjadi juga pembunuhan terhadap seorang pria yang tidak lain adalah teman orang yang terbunuh di pemondokan Chimney.",
                             GambarUrl = "https://upload.wikimedia.org/wikipedia/id/4/4c/The_Seven_Dials_Mystery_First_Edition_Cover_1929.jpg",
                             Harga = 99.999m,
@@ -243,8 +243,8 @@ namespace EComm_2011501158.Server.Migrations
                         new
                         {
                             IdProduk = 2,
-                            DateCreated = new DateTime(2023, 6, 20, 22, 15, 43, 439, DateTimeKind.Local).AddTicks(554),
-                            DateUpdated = new DateTime(2023, 6, 20, 22, 15, 43, 439, DateTimeKind.Local).AddTicks(555),
+                            DateCreated = new DateTime(2023, 6, 30, 17, 57, 17, 48, DateTimeKind.Local).AddTicks(1973),
+                            DateUpdated = new DateTime(2023, 6, 30, 17, 57, 17, 48, DateTimeKind.Local).AddTicks(1974),
                             Deskripsi = "The Witcher adalah rangkaian enam novel fantasi dan 15 cerita pendek  yang ditulis oleh penulis Polandia Andrzej SapkowskiSerial ini berputar di sekitar \"penyihir\" eponymous, Geralt of Rivia ",
                             GambarUrl = "https://upload.wikimedia.org/wikipedia/en/8/84/Season_of_Storms_Orion.jpg",
                             Harga = 70.000m,
@@ -257,8 +257,8 @@ namespace EComm_2011501158.Server.Migrations
                         new
                         {
                             IdProduk = 3,
-                            DateCreated = new DateTime(2023, 6, 20, 22, 15, 43, 439, DateTimeKind.Local).AddTicks(557),
-                            DateUpdated = new DateTime(2023, 6, 20, 22, 15, 43, 439, DateTimeKind.Local).AddTicks(558),
+                            DateCreated = new DateTime(2023, 6, 30, 17, 57, 17, 48, DateTimeKind.Local).AddTicks(1977),
+                            DateUpdated = new DateTime(2023, 6, 30, 17, 57, 17, 48, DateTimeKind.Local).AddTicks(1977),
                             Deskripsi = "The Lord of the Rings adalah sebuah novel epik   fantasi tinggi [a] oleh penulis dan sarjana Inggris J. R. R. Tolkien. Bertempat di Middle-earth, ceritanya dimulai sebagai sekuel dari buku anak-anak Tolkien tahun 1937 The Hobbit, tetapi akhirnya berkembang menjadi karya yang jauh lebih besar. ",
                             GambarUrl = "https://upload.wikimedia.org/wikipedia/en/thumb/e/e9/First_Single_Volume_Edition_of_The_Lord_of_the_Rings.gif/220px-First_Single_Volume_Edition_of_The_Lord_of_the_Rings.gif",
                             Harga = 70.000m,
@@ -289,6 +289,64 @@ namespace EComm_2011501158.Server.Migrations
                     b.HasIndex("IdVarian");
 
                     b.ToTable("ProdukVarian");
+
+                    b.HasData(
+                        new
+                        {
+                            IdProduk = 1,
+                            IdVarian = 1,
+                            HargaOriVarian = 130.000m,
+                            HargaVarian = 120.000m
+                        },
+                        new
+                        {
+                            IdProduk = 1,
+                            IdVarian = 2,
+                            HargaOriVarian = 100.000m,
+                            HargaVarian = 60.000m
+                        },
+                        new
+                        {
+                            IdProduk = 1,
+                            IdVarian = 3,
+                            HargaOriVarian = 240.000m,
+                            HargaVarian = 185.000m
+                        },
+                        new
+                        {
+                            IdProduk = 2,
+                            IdVarian = 1,
+                            HargaOriVarian = 120.000m,
+                            HargaVarian = 100.000m
+                        },
+                        new
+                        {
+                            IdProduk = 2,
+                            IdVarian = 2,
+                            HargaOriVarian = 100.000m,
+                            HargaVarian = 75.000m
+                        },
+                        new
+                        {
+                            IdProduk = 2,
+                            IdVarian = 4,
+                            HargaOriVarian = 360.000m,
+                            HargaVarian = 320.000m
+                        },
+                        new
+                        {
+                            IdProduk = 3,
+                            IdVarian = 1,
+                            HargaOriVarian = 360.000m,
+                            HargaVarian = 300.000m
+                        },
+                        new
+                        {
+                            IdProduk = 3,
+                            IdVarian = 3,
+                            HargaOriVarian = 600.000m,
+                            HargaVarian = 520.000m
+                        });
                 });
 
             modelBuilder.Entity("EComm_2011501158.Shared.Varian", b =>
@@ -306,6 +364,28 @@ namespace EComm_2011501158.Server.Migrations
                     b.HasKey("IdVarian");
 
                     b.ToTable("Varian");
+
+                    b.HasData(
+                        new
+                        {
+                            IdVarian = 1,
+                            Nama = "Fisik"
+                        },
+                        new
+                        {
+                            IdVarian = 2,
+                            Nama = "Digital"
+                        },
+                        new
+                        {
+                            IdVarian = 3,
+                            Nama = "Special Edition"
+                        },
+                        new
+                        {
+                            IdVarian = 4,
+                            Nama = "Special Edition + Author sign"
+                        });
                 });
 
             modelBuilder.Entity("EComm_2011501158.Shared.ItemKereta", b =>

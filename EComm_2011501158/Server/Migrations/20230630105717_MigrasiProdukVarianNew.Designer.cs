@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EComm_2011501158.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230618163346_MigrasiProdukVarian")]
-    partial class MigrasiProdukVarian
+    [Migration("20230630105717_MigrasiProdukVarianNew")]
+    partial class MigrasiProdukVarianNew
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,44 @@ namespace EComm_2011501158.Server.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("EComm_2011501158.Shared.ItemKereta", b =>
+                {
+                    b.Property<int>("IdPesanan")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdProduk")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdVarian")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Harga")
+                        .HasColumnType("decimal(8,2)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NamaProduk")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NamaVarian")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Qty")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdPesanan", "IdProduk", "IdVarian");
+
+                    b.HasIndex("IdProduk");
+
+                    b.HasIndex("IdVarian");
+
+                    b.ToTable("PesananProduk");
+                });
 
             modelBuilder.Entity("EComm_2011501158.Shared.Kategori", b =>
                 {
@@ -127,6 +165,22 @@ namespace EComm_2011501158.Server.Migrations
                         });
                 });
 
+            modelBuilder.Entity("EComm_2011501158.Shared.Pesanan", b =>
+                {
+                    b.Property<int>("IdPesanan")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPesanan"));
+
+                    b.Property<DateTime>("TglPesanan")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IdPesanan");
+
+                    b.ToTable("Pesanan");
+                });
+
             modelBuilder.Entity("EComm_2011501158.Shared.Produk", b =>
                 {
                     b.Property<int>("IdProduk")
@@ -178,8 +232,8 @@ namespace EComm_2011501158.Server.Migrations
                         new
                         {
                             IdProduk = 1,
-                            DateCreated = new DateTime(2023, 6, 18, 23, 33, 46, 313, DateTimeKind.Local).AddTicks(2595),
-                            DateUpdated = new DateTime(2023, 6, 18, 23, 33, 46, 313, DateTimeKind.Local).AddTicks(2596),
+                            DateCreated = new DateTime(2023, 6, 30, 17, 57, 17, 48, DateTimeKind.Local).AddTicks(1969),
+                            DateUpdated = new DateTime(2023, 6, 30, 17, 57, 17, 48, DateTimeKind.Local).AddTicks(1970),
                             Deskripsi = "Misteri Tujuh Lonceng adalah sebuah novel yang bercerita tentang pembunuhan seorang pegawai Departemen Luar Negeri Inggris di sebuah pemondokan, yaitu Pemondokan Chimney. Setelah itu terjadi juga pembunuhan terhadap seorang pria yang tidak lain adalah teman orang yang terbunuh di pemondokan Chimney.",
                             GambarUrl = "https://upload.wikimedia.org/wikipedia/id/4/4c/The_Seven_Dials_Mystery_First_Edition_Cover_1929.jpg",
                             Harga = 99.999m,
@@ -192,8 +246,8 @@ namespace EComm_2011501158.Server.Migrations
                         new
                         {
                             IdProduk = 2,
-                            DateCreated = new DateTime(2023, 6, 18, 23, 33, 46, 313, DateTimeKind.Local).AddTicks(2602),
-                            DateUpdated = new DateTime(2023, 6, 18, 23, 33, 46, 313, DateTimeKind.Local).AddTicks(2603),
+                            DateCreated = new DateTime(2023, 6, 30, 17, 57, 17, 48, DateTimeKind.Local).AddTicks(1973),
+                            DateUpdated = new DateTime(2023, 6, 30, 17, 57, 17, 48, DateTimeKind.Local).AddTicks(1974),
                             Deskripsi = "The Witcher adalah rangkaian enam novel fantasi dan 15 cerita pendek  yang ditulis oleh penulis Polandia Andrzej SapkowskiSerial ini berputar di sekitar \"penyihir\" eponymous, Geralt of Rivia ",
                             GambarUrl = "https://upload.wikimedia.org/wikipedia/en/8/84/Season_of_Storms_Orion.jpg",
                             Harga = 70.000m,
@@ -206,8 +260,8 @@ namespace EComm_2011501158.Server.Migrations
                         new
                         {
                             IdProduk = 3,
-                            DateCreated = new DateTime(2023, 6, 18, 23, 33, 46, 313, DateTimeKind.Local).AddTicks(2608),
-                            DateUpdated = new DateTime(2023, 6, 18, 23, 33, 46, 313, DateTimeKind.Local).AddTicks(2609),
+                            DateCreated = new DateTime(2023, 6, 30, 17, 57, 17, 48, DateTimeKind.Local).AddTicks(1977),
+                            DateUpdated = new DateTime(2023, 6, 30, 17, 57, 17, 48, DateTimeKind.Local).AddTicks(1977),
                             Deskripsi = "The Lord of the Rings adalah sebuah novel epik   fantasi tinggi [a] oleh penulis dan sarjana Inggris J. R. R. Tolkien. Bertempat di Middle-earth, ceritanya dimulai sebagai sekuel dari buku anak-anak Tolkien tahun 1937 The Hobbit, tetapi akhirnya berkembang menjadi karya yang jauh lebih besar. ",
                             GambarUrl = "https://upload.wikimedia.org/wikipedia/en/thumb/e/e9/First_Single_Volume_Edition_of_The_Lord_of_the_Rings.gif/220px-First_Single_Volume_Edition_of_The_Lord_of_the_Rings.gif",
                             Harga = 70.000m,
@@ -238,6 +292,64 @@ namespace EComm_2011501158.Server.Migrations
                     b.HasIndex("IdVarian");
 
                     b.ToTable("ProdukVarian");
+
+                    b.HasData(
+                        new
+                        {
+                            IdProduk = 1,
+                            IdVarian = 1,
+                            HargaOriVarian = 130.000m,
+                            HargaVarian = 120.000m
+                        },
+                        new
+                        {
+                            IdProduk = 1,
+                            IdVarian = 2,
+                            HargaOriVarian = 100.000m,
+                            HargaVarian = 60.000m
+                        },
+                        new
+                        {
+                            IdProduk = 1,
+                            IdVarian = 3,
+                            HargaOriVarian = 240.000m,
+                            HargaVarian = 185.000m
+                        },
+                        new
+                        {
+                            IdProduk = 2,
+                            IdVarian = 1,
+                            HargaOriVarian = 120.000m,
+                            HargaVarian = 100.000m
+                        },
+                        new
+                        {
+                            IdProduk = 2,
+                            IdVarian = 2,
+                            HargaOriVarian = 100.000m,
+                            HargaVarian = 75.000m
+                        },
+                        new
+                        {
+                            IdProduk = 2,
+                            IdVarian = 4,
+                            HargaOriVarian = 360.000m,
+                            HargaVarian = 320.000m
+                        },
+                        new
+                        {
+                            IdProduk = 3,
+                            IdVarian = 1,
+                            HargaOriVarian = 360.000m,
+                            HargaVarian = 300.000m
+                        },
+                        new
+                        {
+                            IdProduk = 3,
+                            IdVarian = 3,
+                            HargaOriVarian = 600.000m,
+                            HargaVarian = 520.000m
+                        });
                 });
 
             modelBuilder.Entity("EComm_2011501158.Shared.Varian", b =>
@@ -255,6 +367,55 @@ namespace EComm_2011501158.Server.Migrations
                     b.HasKey("IdVarian");
 
                     b.ToTable("Varian");
+
+                    b.HasData(
+                        new
+                        {
+                            IdVarian = 1,
+                            Nama = "Fisik"
+                        },
+                        new
+                        {
+                            IdVarian = 2,
+                            Nama = "Digital"
+                        },
+                        new
+                        {
+                            IdVarian = 3,
+                            Nama = "Special Edition"
+                        },
+                        new
+                        {
+                            IdVarian = 4,
+                            Nama = "Special Edition + Author sign"
+                        });
+                });
+
+            modelBuilder.Entity("EComm_2011501158.Shared.ItemKereta", b =>
+                {
+                    b.HasOne("EComm_2011501158.Shared.Pesanan", "Pesanan")
+                        .WithMany("PesaananProduk")
+                        .HasForeignKey("IdPesanan")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EComm_2011501158.Shared.Produk", "Produk")
+                        .WithMany()
+                        .HasForeignKey("IdProduk")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EComm_2011501158.Shared.Varian", "Varian")
+                        .WithMany()
+                        .HasForeignKey("IdVarian")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pesanan");
+
+                    b.Navigation("Produk");
+
+                    b.Navigation("Varian");
                 });
 
             modelBuilder.Entity("EComm_2011501158.Shared.Produk", b =>
@@ -285,6 +446,11 @@ namespace EComm_2011501158.Server.Migrations
                     b.Navigation("Produk");
 
                     b.Navigation("Varian");
+                });
+
+            modelBuilder.Entity("EComm_2011501158.Shared.Pesanan", b =>
+                {
+                    b.Navigation("PesaananProduk");
                 });
 
             modelBuilder.Entity("EComm_2011501158.Shared.Produk", b =>

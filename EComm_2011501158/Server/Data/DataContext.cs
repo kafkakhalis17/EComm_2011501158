@@ -82,16 +82,89 @@ namespace EComm_2011501158.Server.Data
                 new Kategori { IdKategori=2, Nama="Drama"},
                 new Kategori { IdKategori=3, Nama="fantasi"}
              );
+            modelBuilder.Entity<Varian>().HasData(
+             new Varian { IdVarian=1, Nama="Fisik"},
+             new Varian { IdVarian=2, Nama="Digital"},
+             new Varian { IdVarian=3, Nama="Special Edition"},
+             new Varian { IdVarian=4, Nama="Special Edition + Author sign"}
+           );
 
-             modelBuilder.Entity<Pengguna>().HasData(
+
+            modelBuilder.Entity<Pengguna>().HasData(
                 new Pengguna { IdPengguna=1, Username="kafka17", NamaPengguna ="kafka khalis", Password="admin123", EmailPengguna="Khaliskafka@mail.com", TeleponPengguna="08193818311", AlamatPengguna="Jl. Budiyanto No.2 Jakarta", FotoPengguna= "https://i.pinimg.com/564x/b6/24/7a/b6247a4b03bc5a296ac7f694b6b72863.jpg", TglLahir = new DateTime(2015, 5, 29), Admin=true  }
             
              );
+            
             modelBuilder.Entity<ProdukVarian>().HasKey(p => new { p.IdProduk, p.IdVarian });
-            base.OnModelCreating(modelBuilder);
+            
 
+            modelBuilder.Entity<ProdukVarian>().HasData(
+                 new ProdukVarian { 
+                    IdVarian = 1,
+                    IdProduk=1,
+                    HargaOriVarian=130.000m,
+                    HargaVarian=120.000m
+                },
+                 new ProdukVarian
+                 {
+                     IdVarian = 2,
+                     IdProduk = 1,
+                     HargaOriVarian = 100.000m,
+                     HargaVarian = 60.000m
+                 },
+                 new ProdukVarian
+                 {
+                       IdVarian = 3,
+                       IdProduk = 1,
+                       HargaOriVarian = 240.000m,
+                       HargaVarian = 185.000m
+                 
+                 },
+                 new ProdukVarian
+                 {
+                      IdVarian = 1,
+                      IdProduk = 2,
+                      HargaOriVarian = 120.000m,
+                      HargaVarian = 100.000m
+
+                 },
+                 new ProdukVarian
+                 {
+                     IdVarian = 2,
+                     IdProduk = 2,
+                     HargaOriVarian = 100.000m,
+                     HargaVarian = 75.000m
+
+                 },
+                 new ProdukVarian
+                 {
+                     IdVarian = 4,
+                     IdProduk = 2,
+                     HargaOriVarian = 360.000m,
+                     HargaVarian = 320.000m
+
+                 },
+                 new ProdukVarian
+                 {
+                     IdVarian = 1,
+                     IdProduk = 3,
+                     HargaOriVarian = 360.000m,
+                     HargaVarian = 300.000m
+
+                 },
+                 new ProdukVarian
+                 {
+                       IdVarian = 3,
+                       IdProduk = 3,
+                       HargaOriVarian = 600.000m,
+                       HargaVarian = 520.000m
+
+                 }
+             );
             modelBuilder.Entity<ItemKereta>().HasKey(p => new { p.IdPesanan, p.IdProduk, p.IdVarian });
+            base.OnModelCreating(modelBuilder);
         }
+
 
     }
 }

@@ -49,9 +49,10 @@
     [Parameter]
     public int? Id { get; set; }
     Produk produk = new Produk();
-    private int IdVarianSekarang = 1002;
+    private int IdVarianSekarang = 1;
     private ItemKereta _itemkereta = new ItemKereta { Qty = 1 };
     private int IdPesanTerakhir;
+
     private ProdukVarian VarianTerpilih()
     {
         var varians = produk.ProdukVarians.FirstOrDefault(v => v.IdVarian == IdVarianSekarang);

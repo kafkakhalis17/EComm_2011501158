@@ -1,0 +1,119 @@
+﻿@page "/konfirmasipesanan"
+@inject IPenggunaService PenggunaService
+<h3>CED Pengguna</h3>
+
+@if (Id == null)
+{
+    <h3>Tambah Pengguna</h3>
+}
+else
+{
+    <PageTitle> Edit Data @users.NamaPengguna</PageTitle>
+    <h3> Edit @users.NamaPengguna</h3>
+}
+<EditForm Model="users" OnValidSubmit="HandleSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Username</label>
+        <InputText id="username" @bind-Value="@users.Username" class="form-control"></InputText>
+        <ValidationMessage For="@(() => users.Username)" />
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Nama Pengguna</label>
+        <InputText id="Nama" @bind-Value="@users.NamaPengguna" class="form-control"></InputText>
+        <ValidationMessage For="@(() => users.NamaPengguna)" />
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Email</label>
+        <InputText id="Email" @bind-Value="@users.EmailPengguna" class="form-control"></InputText>
+        <ValidationMessage For="@(() => users.EmailPengguna)" />
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">password</label>
+        <InputText type="password" id="Password" @bind-Value="@users.Password" class="form-control"></InputText>
+        <ValidationMessage For="@(() => users.Password)" />
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Konfirmasi passowrds</label>
+        <InputText type="password" id="KonPass" @bind-Value="@users.KonfirmPassword" class="form-control"></InputText>
+        <ValidationMessage For="@(() => users.KonfirmPassword)" />
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Alamat</label>
+        <InputText id="Alamat" @bind-Value="@users.AlamatPengguna" class="form-control"></InputText>
+        <ValidationMessage For="@(() => users.AlamatPengguna)" />
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Telp</label>
+        <InputText id="Telp" @bind-Value="@users.TeleponPengguna" class="form-control"></InputText>
+        <ValidationMessage For="@(() => users.TeleponPengguna)" />
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Foto</label>
+        <InputText id="Foto" @bind-Value="@users.FotoPengguna" class="form-control"></InputText>
+        <ValidationMessage For="@(() => users.FotoPengguna)" />
+    </div>
+
+    <div class="form-group row">
+        Tanggal Lahir :
+        <InputDate id="DateCreated" @bind-Value="users.TglLahir"></InputDate>
+        <ValidationMessage For="@(() => users.TglLahir)" />
+    </div>
+    <div class="form-group row">
+        <label for="IsDeleted" class="col-sm-2 col-form-label">Is Admin?</label>
+        <InputRadioGroup id="isPublic" @bind-Value="users.Admin" class="form-check">
+            YA<InputRadio Value="@true" class="form-check-input">ya</InputRadio>
+            TIDAK<InputRadio Value="@false" class="form-check-input">Tidak</InputRadio>
+        </InputRadioGroup>
+        <ValidationMessage For="@(() => users.Admin)" />
+    </div>
+    <div class="form-group row">
+        <button type="submit" class="btn btn-primary form-control">@btnTxt</button>
+        <button type="button" class="btn btn-danger form-control" @onclick="DeletePengguna">Hapus</button>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+    string btnTxt = string.Empty;
+    Pengguna users = new Pengguna();
+    private EditContext editContext;
+
+    protected async override Task OnInitializedAsync()
+    {
+        btnTxt = Id == null ? "Tambah Pengguna Baru" : "Ubah Pengguna";
+        editContext = new EditContext(users);
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+
+        if (Id != null)
+        {
+            users = await PenggunaService.GetPenggunaById((int)Id);
+        }
+    }
+
+    // Memproses submit form
+    public async void HandleSubmit()
+    {
+        if (Id == null)
+        {
+            await PenggunaService.CreatePengguna(users);
+        }
+        else
+        {
+            await PenggunaService.UpdatePengguna(users);
+        }
+
+
+    }
+
+    async Task DeletePengguna()
+    {
+        await PenggunaService.DeletePengguna(users.IdPengguna);
+    }
+}
+

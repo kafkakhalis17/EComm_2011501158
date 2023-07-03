@@ -1,0 +1,53 @@
+﻿@page "/manajemen-pesanan"
+@inject IPesananService PesananService
+
+<h3>ManajemenPesanan</h3>
+
+<QuickGrid Items="@ItemsQueryable">
+    <PropertyColumn Property="@(p => p.IdPesanan)" Sortable="true"/>
+    <PropertyColumn Property="@(p => p.TglPesanan)" Format="dd-MM-yyyy" Sortable="true"/>
+    <TemplateColumn Title="Nama Produk">
+        @foreach (var item in PesananService.Pesanans.Where(p=> p.IdPesanan == context.IdPesanan))
+        {
+            @for (int i = 0; i < item.PesaananProduk.Count; i++)
+            {
+                <img height="50" width="50" src="@item.PesaananProduk[i].Image"/>
+                <nobr>@item.PesaananProduk[i].NamaProduk</nobr>
+            }
+        }
+
+    </TemplateColumn>
+    <TemplateColumn Title="Nama Varian">
+        @foreach(var item in PesananService.Pesanans.Where(p => p.IdPesanan == context.IdPesanan))
+        {
+            @for (int i = 0; i < item.PesaananProduk.Count; i++)
+            {
+                @item.PesaananProduk[i].NamaVarian <br/>
+               
+            }
+        }
+    </TemplateColumn>
+    <TemplateColumn Title="Jumlah / Harga/ Total">
+        @foreach (var item in PesananService.Pesanans.Where(p => p.IdPesanan == context.IdPesanan))
+        {
+            @for (int i = 0; i < item.PesaananProduk.Count; i++)
+            {
+                @item.PesaananProduk[i].Qty
+                <nobr>/ @item.PesaananProduk[i].Harga</nobr>
+                var total = item.PesaananProduk[i].Qty * item.PesaananProduk[i].Harga;
+                <nobr>@total</nobr>
+                <br/>
+            }
+        }
+    </TemplateColumn>
+
+</QuickGrid>
+@code {
+    IQueryable<Pesanan>? ItemsQueryable;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var items = await PesananService.GetAllPesanan();
+        ItemsQueryable = items.AsQueryable();
+    }
+}

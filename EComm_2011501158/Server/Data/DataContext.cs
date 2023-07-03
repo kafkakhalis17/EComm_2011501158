@@ -15,6 +15,7 @@ namespace EComm_2011501158.Server.Data
         public DbSet <ProdukVarian> ProdukVarian { get; set; }
         public DbSet <ItemKereta> PesananProduk { get; set; }
         public DbSet <Pesanan>  Pesanan { get; set; }   
+        public DbSet <KonfirmasiPesanan> KonfirmasiPesanan { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Produk>().HasData(
@@ -162,6 +163,29 @@ namespace EComm_2011501158.Server.Data
                  }
              );
             modelBuilder.Entity<ItemKereta>().HasKey(p => new { p.IdPesanan, p.IdProduk, p.IdVarian });
+           
+            modelBuilder.Entity<KonfirmasiPesanan>().HasKey(p => new { p.IdPesanan, p.IdKonfirmasi });
+            modelBuilder.Entity<KonfirmasiPesanan>().HasData(
+                new KonfirmasiPesanan
+                {
+                   IdKonfirmasi =1,
+                   TglKonfirmasi = DateTime.Now,
+                   BankTransfer = "BCA",
+                   TglTransfer = DateTime.Now,
+                   JumlahTransfer = 0m,
+                   IdPesanan = 1
+                 },
+                new KonfirmasiPesanan
+                {
+                    IdKonfirmasi = 2,
+                    TglKonfirmasi = DateTime.Now,
+                    BankTransfer = "BCA",
+                    TglTransfer = DateTime.Now,
+                    JumlahTransfer = 10000.00m,
+                    IdPesanan = 1
+                }
+
+            );
             base.OnModelCreating(modelBuilder);
         }
 

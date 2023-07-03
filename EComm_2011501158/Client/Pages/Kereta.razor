@@ -25,7 +25,7 @@
                         <h5><a href="/produk/@item.IdProduk">@item.NamaProduk</a></h5>
                         <span>@item.NamaVarian</span>
                         <br>
-                        <button class="btn-danger" @onclick="@(()=>DeleteItem(item))">Hapus</button>
+                        <button class="btn btn-danger my-4" @onclick="@(()=>DeleteItem(item))">Hapus</button>
                         <EditForm Model="item">
                             <InputNumber id="qty" @bind-Value="item.Qty" class="form-control" style="width:70px"></InputNumber>
                         </EditForm>

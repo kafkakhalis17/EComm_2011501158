@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace EComm_2011501158.Server.Controllers
 {
@@ -8,33 +11,37 @@ namespace EComm_2011501158.Server.Controllers
     public class KonfirmasiPesananController : ControllerBase
     {
         private readonly DataContext _context;
-        public static List<KonfirmasiPesanan> KonfirmasiPesanans = new List<KonfirmasiPesanan>();
+        public static List<KonfirmasiPesanan> konfirmasiPesanans = new List<KonfirmasiPesanan>();
         public KonfirmasiPesananController(DataContext context)
         {
             _context = context;
         }
 
-        private async Task<List<KonfirmasiPesanan>> GetDbKonfrimasiPesanan()
+        [HttpGet]
+        public async Task<ActionResult<List<KonfirmasiPesanan>>> GetAllKonfirmasi()
         {
-            return await _context.KonfirmasiPesanan.ToListAsync();
+            var konfirmasiPesanans = await _context.KonfirmasiPesanan.ToListAsync();
+            return Ok(konfirmasiPesanans);
         }
+
         [HttpPost]
         public async Task<ActionResult<List<KonfirmasiPesanan>>> CreateKonfirmasiPesanan(KonfirmasiPesanan konfirmasiPesanan)
         {
             _context.KonfirmasiPesanan.Add(konfirmasiPesanan);
             await _context.SaveChangesAsync();
-            return Ok(await GetDbKonfrimasiPesanan());
+            return Ok(await _context.KonfirmasiPesanan.ToListAsync());
         }
+
         [HttpDelete("{id}")]
         public async Task<ActionResult<List<KonfirmasiPesanan>>> DeleteKonfirmasiPesanan(int id)
         {
-            var dbKonfrimasiPesanan = await _context.KonfirmasiPesanan
-                .FirstOrDefaultAsync(sh => sh.IdKonfirmasi == id);
-            if (dbKonfrimasiPesanan == null) return NotFound("data tidak ditemukan");
-            _context.KonfirmasiPesanan.Remove(dbKonfrimasiPesanan);
-            await _context.SaveChangesAsync();
-            return Ok(await GetDbKonfrimasiPesanan());
-        }
+            var konfirmasiPesanan = await _context.KonfirmasiPesanan.FindAsync(id);
+            if (konfirmasiPesanan == null)
+                return NotFound("Data tidak ditemukan");
 
+            _context.KonfirmasiPesanan.Remove(konfirmasiPesanan);
+            await _context.SaveChangesAsync();
+            return Ok(await _context.KonfirmasiPesanan.ToListAsync());
+        }
     }
 }

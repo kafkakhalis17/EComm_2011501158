@@ -5,7 +5,7 @@ global using EComm_2011501158.Client.Services.PenggunaService;
 global using EComm_2011501158.Client.Services.KeretaService;
 global using EComm_2011501158.Client.Services.PesananProdukService;
 global using EComm_2011501158.Client.Services.PesananService;
-global using EComm_2011501158.Client.Services.KonfirmasiPesanan;
+global using EComm_2011501158.Client.Services.KonfirmasiPesananService;
 global using EComm_2011501158.Shared;
 global using Blazored.Toast;
 global using Blazored.Toast.Services;

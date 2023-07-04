@@ -14,11 +14,11 @@ namespace EComm_2011501158.Client.Services.KonfirmasiPesananService
             _http = http;
             _navigationmanager = navigationManager;
         }
-        public List<KonfirmasiPesanan> konfirmasiPesanans { get; set; }
+        public List<KonfirmasiPesanan> konfirmasiPesanans { get; set; } = new List<KonfirmasiPesanan>();
 
         public async Task CreateKonfirmasiPesanan(KonfirmasiPesanan konfirmasiPesanan)
         {
-            var result = await _http.PostAsJsonAsync("api/konfirmasipesanan", konfirmasiPesanan);
+            var result = await _http.PostAsJsonAsync("api/konfirmasi_pesanan", konfirmasiPesanan );
             var response = await result.Content.ReadFromJsonAsync<List<KonfirmasiPesanan>>();
             konfirmasiPesanans = response;
             _navigationmanager.NavigateTo("/konfirmasipesanan");
@@ -30,6 +30,17 @@ namespace EComm_2011501158.Client.Services.KonfirmasiPesananService
             var response = await result.Content.ReadFromJsonAsync<List<KonfirmasiPesanan>>();
             konfirmasiPesanans = response;
             _navigationmanager.NavigateTo("/konfirmasipesanan");
+        }
+
+        public async Task GetAllKonfirmasi()
+        {
+
+            var result = await _http.GetFromJsonAsync<List<KonfirmasiPesanan>>("api/konfrimasi_pesanan");
+            if (result != null)
+            {
+                konfirmasiPesanans = result;
+            }
+            throw new NotImplementedException();
         }
     }
 }

@@ -22,6 +22,7 @@ namespace EComm_2011501158.Shared
             
         [ForeignKey (nameof(IdPesanan))]
         public Pesanan? Pesanan { get; set; }
+        [Required(ErrorMessage = "Id Pesananan Harus Diisi")]
         public int IdPesanan { get; set; }
 
     }

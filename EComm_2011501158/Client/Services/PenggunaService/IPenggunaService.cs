@@ -8,5 +8,7 @@
         Task CreatePengguna(Pengguna pengguna);
         Task UpdatePengguna(Pengguna pengguna);
         Task DeletePengguna(int id);
+
+        Task<Pengguna> LoginPengguna(LoginModel loginModel);
     }
 }

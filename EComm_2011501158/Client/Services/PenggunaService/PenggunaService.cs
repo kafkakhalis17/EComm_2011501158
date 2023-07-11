@@ -1,5 +1,6 @@
 ﻿using EComm_2011501158.Shared;
 using Microsoft.AspNetCore.Components;
+using System.Net;
 using System.Net.Http.Json;
 using System.Xml;
 using static System.Net.WebRequestMethods;
@@ -48,6 +49,24 @@ namespace EComm_2011501158.Client.Services.PenggunaService
             var result = await _http.GetFromJsonAsync<Pengguna>($"api/pengguna/{id}");
             if (result != null) { return result; }
             throw new Exception("Data tidak ditemukan");
+        }
+
+        public async Task<Pengguna> LoginPengguna(LoginModel loginModel)
+        {
+            var response = await _http.PostAsJsonAsync<LoginModel>("api/pengguna/loginpengguna", loginModel);
+            if (response.IsSuccessStatusCode)
+            {
+                var user = await response.Content.ReadFromJsonAsync<Pengguna>();
+                return user;
+            }
+            else if (response.StatusCode == HttpStatusCode.NotFound)
+            {
+                return null;
+            }
+            else
+            {
+                throw new Exception($"Failed to Login, Status code:{response.StatusCode}");
+            }
         }
 
         public async Task UpdatePengguna(Pengguna pengguna)

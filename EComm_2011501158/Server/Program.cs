@@ -31,7 +31,7 @@ app.UseHttpsRedirection();
 
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
-
+app.UseAuthentication();
 app.UseRouting();
 
 

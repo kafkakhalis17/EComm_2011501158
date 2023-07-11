@@ -1,0 +1,69 @@
+﻿@page "/login"
+@using System.Security.Claims;
+@inject IPenggunaService PenggunaService;
+@inject NavigationManager navigationManager;
+@inject AuthenticationStateProvider AuthenticationStateProvider;    
+<h3>Login</h3>
+
+<EditForm Model="@loginModel" OnValidSubmit="ValidateUser">
+    <DataAnnotationsValidator/>
+    <div class="form-group row">
+        <label for= "Username " class="col-sm-2 col-form-label">Username</label>
+        <InputText id="username" @bind-Value="@loginModel.Username" class="form-control"></InputText>
+        <ValidationMessage For="@(() => loginModel.Username)"/>
+    </div>
+    <div class="form-group row">
+        <label for="Password " class="col-sm-2 col-form-label">Password</label>
+        <InputText id="Password" @bind-Value="@loginModel.Password" class="form-control"></InputText>
+        <ValidationMessage For="@(() => loginModel.Password)" />
+    </div>
+    @if (!string.IsNullOrEmpty(loginMessage))
+    {
+        <br/>
+        <div class="alert alert-danger">@loginMessage</div>
+    }
+    <br />
+    <div class="form-group row">
+        <button type="submit" class="btn btn-primary form-control">Login</button>
+    </div>
+</EditForm>
+@code {
+    public LoginModel loginModel { get; set; } = new LoginModel();
+    public string loginMessage { get; set; } = string.Empty;
+    ClaimsPrincipal claimsPrincipal;
+    [CascadingParameter]
+    private  Task <AuthenticationState> authenticationStateTask { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        loginModel = new LoginModel();
+        claimsPrincipal = (await authenticationStateTask).User;
+        if (claimsPrincipal.Identity.IsAuthenticated)
+        {
+            ((CustomAuthStateProvider)AuthenticationStateProvider).UserIsLoggedout();
+
+        }
+    }
+
+    protected async Task<bool> ValidateUser()
+    {
+        var loginResult = await PenggunaService.LoginPengguna(loginModel);
+        if (loginResult != null)
+        {
+            if (loginResult.Status)
+            {
+                ((CustomAuthStateProvider)AuthenticationStateProvider).UserAuthenticated(loginResult);
+                navigationManager.NavigateTo("/");
+            }
+            else
+            {
+                loginMessage = "User Inactivated";
+            }
+        }
+        else
+        {
+            loginMessage = "invalid username or password";
+        }
+        return true;
+    }
+}

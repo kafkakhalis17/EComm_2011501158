@@ -38,9 +38,19 @@
             <div class="item-price">
                 Total (@itemKereta.Count): Rp. @itemKereta.Sum(item => item.Harga * item.Qty)
             </div>
-            <div style="text-alight: center; margin-top:10px;">
-                <button class=" btn btn-primary btn-lg" @onclick="ChekOut">Checkout</button>
-            </div>
+            <AuthorizeView>
+                <Authorized>
+                    <div style="text-align: center; margin-top:10px;">
+                        <button class=" btn btn-primary btn-lg" @onclick="ChekOut">Checkout</button>
+                    </div>
+                </Authorized>
+                <NotAuthorized>
+                    <div style="text-align: center; margin-top:10px;">
+                       <button class="btn btn-primary" @onclick="loginCheckout">Login</button>
+                    </div>
+                </NotAuthorized>
+            </AuthorizeView>
+            
         </div>
     }
 }
@@ -99,5 +109,9 @@ else
         await pesananProdukService.CreatePesananProduk(pesananproduk);
         await KeretaService.KosongKereta();
 
+    }
+    private void loginCheckout()
+    {
+        NavigationManager.NavigateTo("/login");
     }
 }

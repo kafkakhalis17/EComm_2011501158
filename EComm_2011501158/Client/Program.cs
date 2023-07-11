@@ -6,6 +6,10 @@ global using EComm_2011501158.Client.Services.KeretaService;
 global using EComm_2011501158.Client.Services.PesananProdukService;
 global using EComm_2011501158.Client.Services.PesananService;
 global using EComm_2011501158.Client.Services.KonfirmasiPesananService;
+global using Microsoft.AspNetCore.Components.Authorization;
+global using Microsoft.AspNetCore.Authentication.Cookies;
+global using EComm_2011501158.Client.Services.LoginService;
+
 global using EComm_2011501158.Shared;
 global using Blazored.Toast;
 global using Blazored.Toast.Services;
@@ -32,4 +36,13 @@ builder.Services.AddScoped<IPesananProdukService, PesananProdukService>();
 builder.Services.AddScoped<IKonfirmasiPesananService, KonfirmasiPesananService>();
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddBlazoredToast();
+builder.Services.AddAuthenticationCore();
+//Auth Cookies
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+}).AddCookie();
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
+
+
 await builder.Build().RunAsync();

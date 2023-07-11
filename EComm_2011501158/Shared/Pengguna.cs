@@ -36,6 +36,8 @@ namespace EComm_2011501158.Shared
         public DateTime TglLahir { get; set; }
         [Required(ErrorMessage = "Status User harus diisi")]
         public bool Admin { get; set; }
+
+        public bool Status { get; set; }
         
     }
 }

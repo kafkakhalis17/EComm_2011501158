@@ -1,7 +1,7 @@
 ﻿@page "/manajemenproduk/tambah"
 @page "/manajemenproduk/edit/{id:int}"
 @inject IProdukService ProdukService
-
+@attribute [Authorize(Roles = "True")]
 
 @if(Id == null){
     <h3>Tambah Produk</h3>

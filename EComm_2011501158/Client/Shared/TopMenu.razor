@@ -3,6 +3,31 @@
 @implements IDisposable
 
 <EComm_2011501158.Client.Pages.PencarianProduk></EComm_2011501158.Client.Pages.PencarianProduk>
+
+<AuthorizeView>
+    <Authorized>
+          <a href="login" class="btn btn-info">
+              <i class="oi oi-account-logout"></i>
+              <span class="badge badge-pill badge-light">
+                    Logout
+              </span>
+          </a>
+          <a href="konfirmasi-pesanan" class="btn btn-info">
+              <i class="oi oi-calculator"></i>
+              <span class="badge badge-pill badge-light">
+                  Konfirmasi Pesanan
+              </span>
+          </a>
+    </Authorized>
+    <NotAuthorized>
+        <a href="login" class="btn btn-info">
+            <i class="oi oi-account-login"></i>
+            <span class="badge badge-pill badge-light">
+                Login
+            </span>
+        </a>
+    </NotAuthorized>
+</AuthorizeView>
 <a href="keranjang" class="btn btn-info">
     <i class="oi oi-cart"></i>
     <span class="badge badgecard-header-pills badge-light">

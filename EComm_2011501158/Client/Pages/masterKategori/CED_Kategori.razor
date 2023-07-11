@@ -1,7 +1,7 @@
 ﻿@page "/manajemenkategori/tambah";
 @page "/manajemenkategori/edit/{id:int}";
 @inject IKategoriService KategoriService
-
+@attribute [Authorize(Roles = "True")]
 <h3>CED Kategori</h3>
 
 @if (Id == null)

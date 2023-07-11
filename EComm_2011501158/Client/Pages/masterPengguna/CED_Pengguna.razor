@@ -1,6 +1,7 @@
 ﻿@page "/manajemenpengguna/tambah";
 @page "/manajemenpengguna/edit/{id:int}";
 @inject IPenggunaService PenggunaService
+@attribute [Authorize(Roles = "True")]
 <h3>CED Pengguna</h3>
 
 @if (Id == null)

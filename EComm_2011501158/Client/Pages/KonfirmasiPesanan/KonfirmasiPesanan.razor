@@ -1,6 +1,7 @@
 ﻿@page "/konfirmasi_pesanan"
 @inject IKonfirmasiPesananService KonPesanananservice
 @inject NavigationManager NavigationManager
+@attribute [Authorize(Roles = "True")]
 <PageTitle> Konfirmasi Pesanan</PageTitle>
 <h3> Konfirmasi Pesanan</h3>
 <br />

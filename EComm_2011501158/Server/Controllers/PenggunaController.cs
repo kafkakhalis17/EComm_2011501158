@@ -1,4 +1,5 @@
 ﻿using EComm_2011501158.Shared;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Org.BouncyCastle.Utilities.IO.Pem;
@@ -71,6 +72,30 @@ namespace EComm_2011501158.Server.Controllers
             _context.Pengguna.Remove(dbPengguna);
             await _context.SaveChangesAsync();
             return Ok(await GetDbPengguna());
+        }
+
+        [HttpPost("loginpengguna")]
+        public async Task<ActionResult<Pengguna>>LoginPengguna(LoginModel loginmodel)
+        {
+            var user = await _context.Pengguna.FirstOrDefaultAsync(c => c.Username.ToLower() == loginmodel
+            .Username.ToLower() && c.Password == loginmodel.Password);
+
+            if (user == null)
+            {
+                return Ok(user);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+            
+        }
+        [HttpGet("logoutpengguna")]
+        public async Task<ActionResult<String>> LogOutPengguna()
+        {
+            await HttpContext.SignOutAsync();
+            return "Succes";    
         }
     }
 }

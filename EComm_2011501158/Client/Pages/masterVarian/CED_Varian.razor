@@ -1,7 +1,7 @@
 ﻿@page "/manajemenvarian/tambah"
 @page "/manajemenvarian/edit/{id:int}"
 @inject IVarianService VarianService
-
+@attribute [Authorize(Roles = "True")]
 <h3>CED Varian</h3>
 
 
